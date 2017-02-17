@@ -1,0 +1,67 @@
+{
+    "page": {
+        "link": "/4admin/page",
+        "ru": {
+            "short": "Обычные страницы",
+            "description": "С помощью этого модуля вы можете создать стандартные модели страниц, добавить стили к тексту и вставлять картинки.",
+            "title": "Страницы"
+        },
+        "en": {
+            "short": "Simple page modules",
+            "description": "With this module you can generate standard model pages, add styles to text and insert pictures.",
+            "title": "Pages"
+        }
+    },
+    "page_menu": {
+        "link": "/4admin/page_designer",
+        "ru": {
+            "short": "Модуль страницы с  боковым меню",
+            "description": "Этот модуль является более профессиональной версией модуля обычных страниц, позволяет добавить боковую панель аккордеон блоки",
+            "title": "Страницы с меню"
+        },
+        "en": {
+            "short": "Page module with side menu",
+            "description": "This module is introduce to a more professional version of the module is simple pages, allows you to add a sidebar accordion blocks",
+            "title": "Page with Sidebar"
+        }
+    },
+    "text": {
+        "link": "/4admin/text",
+        "ru": {
+            "short": "Простой текст",
+            "description": "Простой текстовый блок, добавляется в любой части страницы. Она позволяет управлять стилями.",
+            "title": "Текст"
+        },
+        "en": {
+            "short": "Simple text",
+            "description": "Simple text box, add to any part of the page. It allows you to manipulate the styles.",
+            "title": "Text"
+        }
+    },
+    "carousel": {
+        "link": "/4admin/carousel",
+        "ru": {
+            "short": "Карусель изображений",
+            "description": "Слайдер изображения, позволяет разделить изображение на категории и добавить на страницу.",
+            "title": "Карусель"
+        },
+        "en": {
+            "short": "Image carousel",
+            "description": "Slider images, allows to divide the image into categories and add to the page.",
+            "title": "Carousel"
+        }
+    },
+    "user": {
+        "link": "/4admin/user",
+        "ru": {
+            "short": "Управление пользователями",
+            "description": "Модуль управления пользователями, позволяет удалять, добавлять, изменять пароли пользователям",
+            "title": "Пользователи"
+        },
+        "en": {
+            "short": "Delegate users",
+            "description": "User management module allows you to delete, add, change passwords users",
+            "title": "Users"
+        }
+    }
+}

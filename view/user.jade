@@ -1,0 +1,61 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-user
+		.side-flex.side-table-wrapper
+			h2.side-table-wrapper__title=title
+			button.side-button.side-card-wrapper__button.side-user__add-new-user=texts.ADD
+		.side-flex__add
+			form(class='table-side-to-validate side-flex__add-right-user' action="/4admin/user/add")
+				.side-form-group
+					label(for="username")
+						input(type="text" name="username" id="username" placeholder=texts.NAME value="")
+						span=texts.NAME
+				.side-form-group
+					label(for="password")
+						input(type="password" name="password" id="password" placeholder=texts.NEW_PASSWORD value="")
+						span=texts.NEW_PASSWORD
+				.side-form-group
+					label(for="repeat_password")
+						input(type="password" name="repeat_password" id="repeat_password" placeholder=texts.REPEAT_NEW_PASSWORD value="")
+						span=texts.REPEAT_NEW_PASSWORD
+				.side-form-group
+					label(for="role")
+						select(name="role" id="role")
+							each roles in users
+								option(value=""+roles._id)=roles._id
+						span=texts.ROLE
+				.side-form-group
+					button.side-button.submit-button=texts.SAVE
+		.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12.table-side-to-validate.table-side-remove
+			each type in users
+				- var userType = type._id.toUpperCase();
+				h2.side-user__title=userType
+				.side-users.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12(data-user=type._id)
+						each resourse, i in type.user 
+							.side-users__resourse.col-xl-3.col-lg-4.col-md-4.col-sm-6.col-xs-6(id="user-id-"+resourse._id)
+								.side-users__resourse-item
+									img(src="/4admin/assets/img/icon-user-default.png", alt="")
+									.side-users__info
+										p=resourse.username
+										.side-users__controls
+											span(class="side-remove-item fa fa-remove" data-href="/4admin/user/remove?_id="+resourse._id)
+											span.side-users__controls-edit
+												i.fa.fa-pencil.side-users__edit-handler
+								.side-users__resourse-item__edit-flip
+									i.fa.fa-long-arrow-left.side-users__edit-return.side-users__edit-handler
+									h2.side-users__change-password Change password
+									form(action="/4admin/user/update")
+										input(type="hidden" name="_id" value=resourse._id)
+										.side-form-group.side-form-group-mini
+											label(for="old_password_"+resourse._id)
+												input(type="text" name="old_password" id="old_password_"+resourse._id placeholder=texts.OLD_PASSWORD value="")
+										.side-form-group.side-form-group-mini
+											label(for="new_password_"+resourse._id)
+												input(type="password" name="password" id="new_password_"+resourse._id placeholder=texts.NEW_PASSWORD value="")
+										.side-form-group.side-form-group-mini.side-group-submit-button
+											label(for="repeat_password_"+resourse._id)
+												input(type="password" name="repeat_password" id="repeat_password_"+resourse._id placeholder=texts.REPEAT_NEW_PASSWORD value="")
+											button
+												i.fa.fa-save
+

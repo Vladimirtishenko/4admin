@@ -1,0 +1,79 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					h2.side-table-wrapper__title=title
+					a.side-button.side-card-wrapper__button(href="/4admin/page")=texts.BACK
+				.side-form-wrapper
+					form(class='table-side-to-validate' action="/4admin/page/change")
+						- if(pages._id)
+							input(type="hidden" name="_id" value=pages._id)
+						.side-form-group
+							label(for="title_ru")
+								- var title = pages.ru ? pages.ru.title : "";
+								input(type="text" name="title_ru" id="title_ru" placeholder="Заголовок на русском" value=title)
+								span Заголовок
+						.side-form-group
+							label(for="title_en")
+								- var title = pages.en ? pages.en.title : "";
+								input(type="text" name="title_en" id="title_en" placeholder="Title in english" value=title)
+								span Title
+						.side-form-group
+							label(for="communication_multilang")
+								select(type="text" name="communication" id="communication_multilang")
+									option(value="new" selected) Empty
+								span General page
+						.side-form-group
+							label(for="description_ru")
+								- var description = pages.ru ? pages.ru.description : "";
+								textarea(id="description_ru" name="description_ru" placeholder="Описание на русском" required)=description
+								span Описание
+						.side-form-group
+							label(for="description_en")
+								- var description = pages.en ? pages.en.description : "";
+								textarea(id="description_en" name="description_en" placeholder="Description in english" required)=description
+								span Description
+						.side-form-group
+							label(for="google_keywords_ru")
+								- var metak = pages.ru ? pages.ru.metak : "";
+								input(id="google_keywords_ru" name="metak_ru" placeholder="Google Meta Keywords на русском" value=metak)
+								span 
+									| Google Keywords 
+									br 
+									| на русском
+						.side-form-group
+							label(for="google_keywords_en")
+								- var metak = pages.en ? pages.en.metak : "";
+								input(id="google_keywords_en" name="metak_en" placeholder="Google Meta Keywords in english" value=metak)
+								span 
+									| Google Keywords 
+									br 
+									| in english
+						.side-form-group
+							label(for="google_description_ru")
+								- var metad = pages.ru ? pages.ru.metad : "";
+								input(id="google_description_ru" name="metad_ru" placeholder="Google Meta Description на русском" value=metad)
+								span 
+									| Google Description 
+									br 
+									| на русском
+						.side-form-group
+							label(for="google_description_en")
+								- var metad = pages.en ? pages.en.metad : "";
+								input(id="google_description_en" name="metad_en" placeholder="Google Meta Description in english" value=metad)
+								span 
+									| Google Description 
+									br 
+									| in english
+
+						.side-form-group
+							button.side-button.submit-button=texts.SAVE
+	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
+	script.
+		CKEDITOR.config.width = '80%';
+		CKEDITOR.config.filebrowserBrowseUrl = '/4admin/uploader';
+		CKEDITOR.config.filebrowserUploadUrl = '/4admin/uploader';
+		CKEDITOR.replaceAll();

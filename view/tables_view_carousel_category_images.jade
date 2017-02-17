@@ -1,0 +1,44 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					a.side-button.side-card-wrapper__button(href="/4admin/carousel")=texts.BACK
+					h2.side-table-wrapper__title=title
+					.side-table-wrapper__label
+						form(enctype='multipart/form-data')
+							label(for="side-uploaded-file").side-button.side-card-wrapper__button
+								span=texts.UPLOAD
+								input#side-uploaded-file.upload-button.side-table-wrapper__upload-button(name="image" type="file" data-category=category_id data-action="new-upload")
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12.side-item-to-paste.table-side-remove.table-side-to-validate
+				each item, i in entity
+					form.side-validation-requested.side-carousel-item(action="/4admin/carousel/item_edit_text").table-side__item-remove(data-id=item._id)
+						.row
+							input(type="hidden" name="_id" value=item._id)
+							.col-xl-4.col-lg-4.col-md-4.col-sm-4.col-xs-4.side-carousel-item__image
+								img(src=item.src, alt=item.title_en)
+							.col-xl-7.col-lg-7.col-md-7.col-sm-7.col-xs-7.side-carousel-item__text-block
+								.side-form-group-carousel
+									each translation in item.items
+										label(for="title_"+translation.lang_key class="side-group-input")
+											input(type="text" name="title_"+translation.lang_key id="title_"+translation.lang_key placeholder=texts.TITLE+" "+ translation.lang_key value=translation.title)
+										label(for="description_"+translation.lang_key class="side-group-textarea")
+											textarea(id="description_"+translation.lang_key rows="4" name="description_"+translation.lang_key placeholder=texts.DESCRIPTION+" "+ translation.lang_key required)=translation.description
+							.col-xl-1.col-lg-1.col-md-1.col-sm-1.col-xs-1
+								.side-carousel-item__submited
+									label(for="side-uploaded-file-#{i}").side-card-wrapper__button
+										i.fa.fa-file-image-o(title="Upload new")
+										input(id="side-uploaded-file-#{i}" class="upload-button side-table-wrapper__upload-button" data-current-src=item.src name="image" type="file" data-category=""+item.category_id data-id=item.id data-action="edit-upload")
+									label.side-card-wrapper__button(for="side-form-send-#{i}")
+										i.fa.fa-floppy-o(title="Save")
+										input(type="submit" class="side-form-send-hidden" id="side-form-send-#{i}")
+									label.side-card-wrapper__button
+										span(class="side-remove-item fa fa-remove" data-href="/4admin/"+linkToDelete+"?_id="+item._id)
+										
+
+
+
+
+					

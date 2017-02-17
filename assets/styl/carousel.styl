@@ -1,0 +1,91 @@
+.side-drop-down
+	position relative
+	z-index 10
+	&:hover .side-drop-down__absolute_form
+		display block
+	&:hover:before
+		width 200%
+		position absolute
+		top 100%
+		height 40px
+		right 0
+		content ""
+	
+.side-drop-down .side-form-group
+	padding-bottom 0
+
+.side-form-group-carousel label 
+	margin 5px 0
+
+.side-form-group-carousel input, 
+.side-form-group-carousel textarea
+	width 100%
+	
+.side-drop-down__absolute_form
+	display none
+	position absolute
+	background #fff 
+	width 200%
+	padding 20px
+	right 0
+	top 120%
+	&:before
+		position absolute
+		content ""
+		right 0
+		top -20px
+		width 0
+		height 0
+		border-top 20px solid transparent
+		border-right 20px solid #fff
+		border-bottom 20px solid transparent
+		
+.side-table-wrapper__upload-button
+	position absolute
+	left -999999px
+	visibility hidden
+	
+.side-button.side-card-wrapper__button span
+	color #fff
+	
+.side-carousel-item
+	border 3px solid #edeced
+	padding 20px 10px 0
+	margin-bottom 20px
+	
+.side-carousel-item__text-block .side-form-group label 
+	width 50%
+	
+.side-carousel-item__text-block .side-form-group label input, 
+.side-carousel-item__text-block .side-form-group label textarea
+	width 96%
+	
+.side-carousel-item__image img 
+	width 100%
+	
+.side-carousel-item__submited label 
+	width 100%
+	text-align center
+	padding 10px 0
+	cursor pointer
+	
+.side-carousel-item__submited label i, .side-carousel-item__submited label span
+	font-size 30px
+	color blue
+	width initial
+	
+.side-edited-link
+	color #000
+	font-size 16px
+	text-transform uppercase
+	border-bottom 1px solid transparent
+	padding-bottom 2px
+	&:hover 
+		color blue 
+		border-bottom 1px solid blueOpacity
+		
+.side-form-send-hidden
+	position absolute
+	left -999999px
+	opacity 0
+	

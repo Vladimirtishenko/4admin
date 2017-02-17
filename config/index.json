@@ -1,0 +1,20 @@
+{
+	"port": 25678,
+	"mongoose": {
+		"port": 27017,
+		"host": "mongodb://localhost/",
+		"base": "4admin"
+	},
+	"userCreateKey": "qwer6tyujnmk3dqk89jhkj",
+	"session" : {
+		"secret": "KillJoneDou",
+		"key": "sid",
+		"resave": true,
+    	"saveUninitialized": true,
+		"cookie": {
+			"maxAge": null,
+			"path": "/",
+			"httpOnly": true
+		}
+	}
+}

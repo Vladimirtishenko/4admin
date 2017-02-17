@@ -1,0 +1,15 @@
+.side-side-bar
+	.side-side-bar__user
+		img(src="/4admin/assets/img/icon-user-default.png", alt="")
+		span.side-user-username=data.user.username
+	ul.side-side-bar__list
+		- var activeHome = link == '' ? 'side-active' : '';
+		li(class="side-side-bar__item "+activeHome)
+			a(href="/4admin/")=texts.HOME
+		- var key = 0;
+		each module in data.modules
+			- var classie = module.link == link ? 'side-active' : '';
+			li(class="side-side-bar__item "+classie)
+				a(href=module.link)=module.item_module[key].title
+
+	

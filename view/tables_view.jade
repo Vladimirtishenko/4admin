@@ -1,0 +1,27 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					h2.side-table-wrapper__title=title
+					a.side-button.side-card-wrapper__button(href="/4admin/"+linksToAdd)
+						| #{texts.ADD}
+				table.table.table-side.table-side-remove
+					tr
+						td(width="60%") 
+							p #{texts.TITLE}
+						td(width="20%" align="center") 
+							p #{texts.EDIT}
+						td(width="20%" align="center") 
+							p #{texts.DELETE}
+					each page, i in pages
+						tr.table-side__item.table-side__item-remove
+							td(width="60%")
+								- var text = page.items[0].title || page.items[0].description
+								p=text 
+							td(width="20%" align="center")
+								a(href="/4admin/"+linksToAdd+"?_id="+page._id class="fa fa-edit")
+							td(width="20%" align="center")
+								span(class="side-remove-item fa fa-remove" data-href="/4admin/"+linkToDelete+"?_id="+page._id)

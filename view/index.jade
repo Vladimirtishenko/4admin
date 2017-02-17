@@ -1,0 +1,15 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.row 
+					each module, i in data.modules
+						.col-xl-6.col-lg-6.col-md-6.col-sm-12.col-xs-12
+							.side-card-wrapper__item
+								- var key = 0;
+								h3(class="side-card-wrapper__title")=module.item_module[key].title
+								p(class="side-card-wrapper__description")=module.item_module[key].description
+								.side-card-footer
+									a.side-button(href=module.link)=texts.VIEW

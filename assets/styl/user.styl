@@ -1,0 +1,104 @@
+.side-user
+	padding 50px 0
+
+.side-users
+	display flex
+	flex-wrap wrap
+	padding 20px 0
+
+.side-user__title
+	font-family CirceLight
+	letter-spacing 1px
+	
+.side-users__resourse
+	text-align center
+	display flex
+	position relative
+	height 260px
+	align-items center
+	font-family CirceLight
+	transition transform 0.5s
+	transform-style preserve-3d
+	margin 10px 0
+
+.side-users__resourse-item,
+.side-users__resourse-item__edit-flip
+	background #fff
+	padding 15px
+	display flex 
+	align-items center
+	justify-content center
+	flex-wrap wrap
+	flex-direction column
+	width 95%
+	height 100%
+	left 0
+	right 0
+	margin auto 
+	position absolute
+	backface-visibility hidden
+	
+.side-users__resourse-item__edit-flip
+	transform rotateY( 180deg )
+	
+.side-users__resourse.side-flip
+	transform rotateY( 180deg )
+
+.side-users
+	position relative
+	perspective 600px
+	
+.side-users__controls span 
+	padding 0 5px
+	font-size 16px
+	cursor pointer
+	&:hover 
+		color #4d72ca
+	
+.side-users__controls-edit
+	font-size 14px i
+	
+.side-users__info
+	display block
+	width 100%
+	padding-top 20px
+
+.side-form-group-mini input
+	height 40px i
+	padding 5px i
+	width 100% i
+
+.side-group-submit-button
+	display flex
+	align-items center
+	justify-content space-between
+
+.side-group-submit-button label
+	width 80%
+
+.side-group-submit-button button 
+	background #508dcb
+	border none
+	color #fff
+	border-radius 50%
+	padding 5px 10px
+
+.table-side-to-validate .side-form-group-mini:last-child
+	padding 0
+	
+.side-users__change-password
+	padding-bottom 20px
+	
+.side-users__edit-return
+	position absolute
+	top 10px
+	left 10px
+	cursor pointer
+	
+.side-flex__add
+	margin-bottom 30px
+	display none
+	
+.side-user__show-add
+	display block
+	

@@ -1,0 +1,16 @@
+.container-fluid
+	.row
+		.side-header.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+			.side-flex-area
+				i.fa.fa-bars.fa-white.side-open-menu(aria-hidden="true")
+				img.side-header__logo(src="http://4side.xyz/images/logo.png", alt="")
+				.side-header__left
+					span.side-lang-menu(class=l)
+						each val, index in data.language_keys
+							- var key = index.toUpperCase();
+							- if (index != lang)
+								a.side-lang-menu__item(href="/4admin/?clang="+index)=key
+							- else 
+								span.side-lang-menu__item.side-lang-active=key
+					a(href="/4admin/logout")
+						i.fa.fa-sign-out.fa-white(aria-hidden="true")

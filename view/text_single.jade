@@ -1,0 +1,41 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					h2.side-table-wrapper__title=title
+					a.side-button.side-card-wrapper__button(href="/4admin/text")=texts.BACK
+				.side-form-wrapper
+					form(class='table-side-to-validate' action="/4admin/text/create")
+						- if(textPage && textPage._id)
+							input(type="hidden" name="_id" value=textPage._id)
+						.side-form-group
+							label(for="title_ru")
+								- var title = textPage.ru ? textPage.ru.title : "";
+								input(type="text" name="title_ru" id="title_ru" placeholder="Заголовок на русском" value=title)
+								span Заголовок
+						.side-form-group
+							label(for="title_en")
+								- var title = textPage.en ? textPage.en.title : "";
+								input(type="text" name="title_en" id="title_en" placeholder="Title in english" value=title)
+								span Title
+						.side-form-group
+							label(for="description_ru")
+								- var description = textPage.ru ? textPage.ru.description : "";
+								textarea(id="description_ru" name="description_ru" placeholder="Описание на русском" required)=description
+								span Описание
+						.side-form-group
+							label(for="description_en")
+								- var description = textPage.en ? textPage.en.description : "";
+								textarea(id="description_en" name="description_en" placeholder="Description in english" required)=description
+								span Description
+						.side-form-group
+							button.side-button.submit-button=texts.SAVE
+	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
+	script.
+		CKEDITOR.config.width = '80%';
+		CKEDITOR.config.filebrowserBrowseUrl = '/4admin/uploader';
+		CKEDITOR.config.filebrowserUploadUrl = '/4admin/uploader';
+		CKEDITOR.replaceAll();

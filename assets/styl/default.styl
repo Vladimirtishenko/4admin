@@ -1,0 +1,150 @@
+@font-face
+  font-family 'FontAwesome'
+  src url('../fonts/fontawesome-webfont.eot')
+  src url('../fonts/fontawesome-webfont.woff2') format('woff2'), url('../fonts/fontawesome-webfont.woff') format('woff'), url('../fonts/fontawesome-webfont.ttf') format('truetype'), url('../fonts/fontawesome-webfont.svg') format('svg')
+  font-weight normal
+  font-style normal
+
+@font-face
+   font-family CirceLight
+   font-style normal
+   src url('../fonts/Circe-Light.ttf') 
+   
+@font-face
+   font-family CirceRegular
+   font-style normal
+   src url('../fonts/Circe-Regular.ttf')
+
+*
+  box-sizing border-box i
+
+.side-user-username
+	text-transform capitalize
+
+.side-button
+	background #508dcb
+	border-radius 30px
+	border none
+	padding 16px 30px
+	font-size 18px
+	display inline-block
+	color #fff
+	font-family CirceLight
+	&:hover 
+		background #285b8e
+	
+.submit-button
+	min-width 200px
+	text-align center
+	cursor pointer
+	font-size 22px
+	
+.side-input, input, select, textarea
+	border 3px solid #edeced
+	border-radius 3px
+	background 0 0
+	height 57px
+	margin-right 2%
+	padding 10px
+	display inline-block
+	width 80%
+	font-family CirceLight
+	display inline-block 
+	vertical-align middle
+
+textarea
+	height initial
+
+.side-error
+	background rgba(217,83,79,.12) i
+	
+label
+	width 100%
+	font-family CirceLight
+	
+label span 
+	display inline-block 
+	vertical-align middle
+	width 16%
+	font-family CirceLight 
+	color #000
+
+label > div
+	margin-right 2% i
+	display inline-block i
+	vertical-align middle i
+	
+.side-flex
+	display flex 
+	align-items center
+	justify-content space-between
+	
+.side-wrapper
+	position relative
+	left 0px
+	width 100%
+	z-index 10
+	min-height 100%
+	transition .5s
+	left 0
+	background gr
+	
+	
+.side-main
+	width 100%
+	height 100%
+	overflow-x hidden
+	background gr
+	padding-bottom 1px 
+	margin-bottom -1px
+	
+.side-notify
+	position fixed
+	width 100%
+	height 100%
+	display flex
+	top 0 
+	left 0
+	align-items center
+	justify-content center
+	z-index 999
+	
+.side-notify p 
+	font-family CirceLight
+	background hsla(0, 0%, 100%, 0.96)
+	padding 30px
+	box-shadow 0px 0px 6px 0px rgba(255, 0, 0, 0.43)
+	font-size 20px
+	position relative
+	
+.side-notify__close 
+	position absolute
+	top -15px
+	right -18px
+	cursor pointer
+	margin auto
+	width 35px
+	background #fff
+	padding 5px 10px
+	&:after 
+		content ""
+		position absolute
+		width 100%
+		height 100%
+		top 0
+		left 0
+		box-shadow 0px 0 6px 0 rgba(255,0,0,.43)
+    	
+.side-notify p a 
+	color blue
+	padding-bottom 2px 
+	border-bottom 1px solid rgba(80, 141, 203, 0.5)
+	&:hover
+		border-bottom 1px solid transparent
+		
+.button-ico 
+	min-width 0
+	font-size 14px
+	border-radius 50%
+	padding 15px 19px 11px
+	margin-left 5%

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Document
+  include includes/_head.jade
+body
+  .login-page
+    .form
+      img(class="side-form__image" src="http://4side.xyz/images/big_logo-blue.png", alt="")
+      form.login-form.table-side-to-validate(action="/4admin/loginAction")
+        input(type='text', name="username", placeholder=texts.USERNAME required)
+        input(type='text', name="password", placeholder=texts.PASSWORD required)
+        button=texts.LOGIN
+  include includes/_javascript.jade

@@ -1,0 +1,27 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper.side-add-block-event
+					a.side-button.side-card-wrapper__button(href="/4admin/page_designer")=texts.BACK
+					h2.side-table-wrapper__title=title
+					.side-button.side-card-wrapper__button.side-card-wrapper__add-block=texts.ADD_BLOCK
+		.row.side-card-wrapper__append-or-update.table-side-to-validate(data-id-pages=_id)
+		
+		.row.side-card-wrapper__content.side-add-block-event.table-side-remove
+				.col-xl-3.col-lg-3.col-md-3.col-sm-3.col-xs-3.side-card-wrapper__links-block
+					each item_side, i in inners
+						- var classie = (i == 0) ? " side-card-wrapper__link side-card-wrapper__link-active" : "side-card-wrapper__link";
+							a(href="#"+item_side._id data-block=""+item_side._id id='side-links-'+item_side._id class=classie)=item_side.items[0].title
+				.col-xl-9.col-lg-9.col-md-9.col-sm-9.col-xs-9.side-card-wrapper__content-wrapper-block
+					each item, j in inners
+						- var display = (j == 0) ? 'side-show-block' : '';
+						.side-card-wrapper__content-block(id="showing-block-"+item._id class=display)
+							.side-card-wrapper__content-block-items
+								!{item.items[0].description}
+							.side-card-wrapper__remove-or-edit
+								span.side-card-wrapper__button.fa.fa-pencil-square-o.side-card-wrapper__add-block(data-id-item=""+item._id)
+								span(class="side-remove-item fa fa-remove" data-href="/4admin/page_designer/delete_item?_id="+item._id)
+	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
