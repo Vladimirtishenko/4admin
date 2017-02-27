@@ -63,5 +63,18 @@
             "description": "User management module allows you to delete, add, change passwords users",
             "title": "Users"
         }
+    },
+    "menu": {
+        "link": "/4admin/menu",
+        "ru": {
+            "short": "Управление меню",
+            "description": "Модуль помогает создавать и управлять всеми разделами меню для сайта",
+            "title": "Меню"
+        },
+        "en": {
+            "short": "Menu controls",
+            "description": "Module help create and manage all section menu on the site",
+            "title": "Menu"
+        }
     }
 }

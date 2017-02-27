@@ -1,4 +1,5 @@
 var TranslationModel = require('./model/translation.js');
+var Language = require('../language/language.js');
 var async = require('async');
 
 function Translation (){
@@ -163,6 +164,65 @@ Translation.prototype.deleteItemsByMultiply = function(ids, callback){
     TranslationModel.remove({item_id: {$in: ids }}, function (err, doc) {
         callback(null, doc);
     })
+}
+
+Translation.prototype.addTranslationWithValue = function(id, translation, callback){
+
+    async.forEachOf(translation, function(v, k, cb){
+
+        TranslationModel.findOneAndUpdate({
+                item_id: id,
+                lang_key: k
+            },
+            { $set: 
+                {
+                    lang_key: k,
+                    item_id: id,
+                    table_name: 'menu',
+                    value: v
+                }
+            }, {
+                upsert: true,
+                new: true
+            },
+            function(err, data) {
+                if (err) {
+                    cb(err);
+                } else {
+                    cb();
+                }
+            })
+
+    }, function(err){
+        callback(err);
+    })
+
+}
+
+Translation.prototype.verifyTranslationValue = function(translations, callback){
+
+    var translation = {};
+
+    Language.getLangKeys(function(err, data){
+        if(err){
+            callback(err, null)
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            
+            if(!translations[data[i]]){
+                translation[data[i]] = {};
+            } else {
+                translation[data[i]] = translations[data[i]].value;
+            }
+
+        }
+        
+        callback(null, translation);
+
+    })
+
+
 }
 
 module.exports = new Translation();

@@ -27,7 +27,7 @@ Language.prototype.getLangKeys = function(callback) {
             keys.push(data[i].key);
         }
 
-        callback(keys);
+        callback(err, keys);
 
     });
 }

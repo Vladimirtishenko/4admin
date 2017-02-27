@@ -1,5 +1,5 @@
+var Menu = require('../menu.js');
 var mainModule = require('../../main/main.js');
-var carouselModule = require('../carousel.js');
 var urlHelper = require('../../../helper/urlHelper.js');
 var async = require('async');
 
@@ -12,24 +12,25 @@ module.exports.get = function(req, res, next){
                 callback(null, data);
             })
         },
-        carouselCategory: function(callback) {
-            carouselModule.getAllCategory(function(err, data) {
+        menu: function(callback) {
+            Menu.getAllMenu(function(err, data) {
                 if (err) next(err);
                 callback(null, data);
             })
         }
     }, function(err, results) {
-
+   
         var module = urlHelper(results.modules.modules, req.originalUrl);
 
-        res.render('view/tables_view_carousel_category', {
+        res.render('view/tables_view_carousel_category.jade', {
             title: module.title,
             data: results.modules,
-            general: results.carouselCategory,
-            linksToAdd: 'carousel/add',
-            linksToEdit: 'carousel/item_edit',
-            linkToDelete: 'carousel/delete',
+            general: results.menu,
+            linksToAdd: 'menu/add',
+            linksToEdit: 'menu/edit',
+            linkToDelete: 'menu/delete',
             link: String(module.url)
         });
     });
+
 }

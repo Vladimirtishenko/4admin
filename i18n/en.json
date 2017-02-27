@@ -4,6 +4,7 @@
 	"ADD": "Add",
 	"ADD_BLOCK": "Add block",
 	"TITLE": "Title",
+	"LABEL": "Label",
 	"DESCRIPTION": "Description",
 	"EDIT": "Edit",
 	"EDIT_CONTENT": "Edit content",
@@ -20,12 +21,18 @@
 	"USERNAME" : "User name",
 	"UPLOAD": "Upload",
 	"DO_YOU_SURE": "Do you sure?",
+	"NAME_MENU": "Name for menu",
+	"ADD_MENU_ITEM": "Add menu items",
+	"PAGE_BIND": "Page bind",
+	"EMPTY": "Empty",
+	"ADD_SUBMENU": "Add submenu",
+	"ADD_ITEMS": "Add item",
 	"ERROR": {
 		"NAME_ARE_BUSY" : "This name are busy",
 		"NOT_DELETED" : "Please call to developer, and say him this id",
 		"FIELD_NOT_BE_EMPTY": "Field `name` not be empty!",
 		"ANY_FIELD_NOT_BE_EMPTY": "Field is not be empty!",
-		"CATEGORY_IS_NOT_DEFINED" : "Category id is nod defined!",
+		"CATEGORY_IS_NOT_DEFINED" : "Category id is not defined!",
 		"ID_IS_NOT_FOUND": "Not id in requested form",
 		"FIELD_IS_NOT_REMOVED": "Not remove field",
 		"DATA_IF_NOT_FULL" : "Data is not full",
@@ -37,12 +44,16 @@
 		"TRY_LETTER": "Error, Sorry try latter! message: ",
 		"TRY_LETTER_NOT_DELETED": "Not deleted, sorry try late!",
 		"UNAMED_ERROR": "Sorry, maybe server error!",
-		"UNCORRECT_FIELD" : "Fill in the fields correctly"
+		"UNCORRECT_FIELD" : "Fill in the fields correctly",
+		"MENU_FAULT": "Menu is not recalculated, sorry try later!",
+		"MENU_IS_UNDEFINED": "Menu is not defined"
+
 	},
 	"SUCCESS" : {
 		"UPDATE_SUCCESS" : "Item updated successfully",
 		"USER_CREATED" : "User created!",
 		"USER_PASS_UPDATE" : "User password is updated!",
-		"CONTENT_UPDATE": "Success, the content has been updated!"
+		"CONTENT_UPDATE": "Success, the content has been updated!",
+		"MENU_RECALCULATE_UPDATE": "Menu recalculated successfully!"
 	}
 }

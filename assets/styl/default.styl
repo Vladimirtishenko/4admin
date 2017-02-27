@@ -30,16 +30,41 @@
 	display inline-block
 	color #fff
 	font-family CirceLight
+	cursor pointer
 	&:hover 
 		background #285b8e
-	
+
+.side-card-mini-button
+	width initial
+	min-width 0
+	background #508dcb
+	border none
+	padding 9px 13px
+	margin 0 10px
+	font-size 18px
+	display inline-block
+	color #fff
+	font-family CirceLight
+	cursor pointer
+	&:hover 
+		background #285b8e
+
 .submit-button
 	min-width 200px
 	text-align center
 	cursor pointer
 	font-size 22px
 	
-.side-input, input, select, textarea
+.side-mini-button
+	height 50px
+	padding 10px 15px
+	width initial
+	border-radius 50%
+	min-width 0
+	float left
+	cursor pointer
+	
+.side-input, select, textarea, input:not([type="checkbox"])
 	border 3px solid #edeced
 	border-radius 3px
 	background 0 0
@@ -51,6 +76,9 @@
 	font-family CirceLight
 	display inline-block 
 	vertical-align middle
+	
+.side-form-group select 
+	text-transform capitalize
 
 textarea
 	height initial
@@ -147,4 +175,3 @@ label > div
 	font-size 14px
 	border-radius 50%
 	padding 15px 19px 11px
-	margin-left 5%

@@ -9,7 +9,6 @@ class Remove extends Helper {
 	}
 
 	tryRemoveButton(){
-		console.log(this.table);
 		for (var i = 0; i < this.table.length; i++) {
 			this.flyEvent('add', ['click'], [this.table[i]], this.removeHandler.bind(this))
 		}

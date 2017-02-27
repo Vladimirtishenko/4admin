@@ -1,6 +1,7 @@
 var Model = require('./model/index.js');
 var mongoose = require('../../lib/mongoose.js');
 var Translation = require('../translations/translation.js');
+var Language = require('../language/language.js');
 var async = require('async');
 
 function Page() {
@@ -24,8 +25,7 @@ Page.prototype.getAllpage = function(lang, callback) {
                     "input": "$items",
                     "as": "page",
                     "cond": { 
-                        "$eq": ["$$page.lang_key", lang],
-                        "$eq": ["$$page.table_name", this.collection]
+                        "$eq": ["$$page.lang_key", lang]
                     }
                 }
             }
@@ -38,10 +38,46 @@ Page.prototype.getAllpage = function(lang, callback) {
 
 Page.prototype.getPageId = function(id, callback) {
 
-    Translation.getById(id, function (err, data) {
-        callback(err, data);
+     Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'items'
+        },
+    }, 
+    {
+        $match: {_id: this.getId(id)}
+    }
+    ], function(err, data) {
+        callback(err, data)
     })
 
+}
+
+Page.prototype.getEmptyVariablesByLang = function(callback){
+    Language.getLangDescription(function(err, data){
+        if(err){
+            callback(err, null);
+            return;
+        } 
+
+        var schemaKeys = Object.keys(this.schema),
+            dataObj = {
+                items: []
+            };
+
+        for (var i = 0; i < schemaKeys.length; i++) {
+            dataObj[schemaKeys[i]] = ''
+        }
+
+        for (var mark in data) {
+            dataObj.items.push({lang_key: mark})
+        }
+
+        callback(null, [dataObj])
+
+    }.bind(this))
 }
 
 Page.prototype.createOrUpdatePage = function(variables, cb) {
@@ -83,8 +119,8 @@ Page.prototype.createOrUpdatePage = function(variables, cb) {
 
 }
 
-Page.prototype.getId = function() {
-    return mongoose.Types.ObjectId();
+Page.prototype.getId = function(id) {
+    return id ? mongoose.Types.ObjectId(id) : mongoose.Types.ObjectId();
 }
 
 Page.prototype.delete = function(_id, callback) {

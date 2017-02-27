@@ -1,3 +1,5 @@
+import Translation from '../Translation/translation__single.js'
+
 class Templates {
 	constructor(){}
 
@@ -138,6 +140,36 @@ class Templates {
 				      '</form>' +
 				   '</div>' +
 				'</div>';
+	}
+
+	itemMenuGeneral(name, id){
+		return '<div class="side-hr side-menu-form-wrapper__general" id="'+id+'">' +
+				  '<div class="side-form-group__section-block side-main-tree">' +
+				  	 '<span class="side-name-of-menu">'+name+'</span>' +
+				  	 '<span data-template="itemMenu" data-content="side-add-menu-button" data-id="'+id+'" class="side-card-wrapper__button side-card-mini-button">'+Translation.tr.ADD_ITEMS+'</span>' +
+				  	'<span data-template="itemSubMenu" data-content="side-add-menu-submenu" data-id="'+id+'" class="side-card-wrapper__button side-card-mini-button">'+Translation.tr.ADD_SUBMENU+'</span>' +
+				  '</div>' +
+				  '<span class="side-remove-on-tree side-save-tree side-card-mini-button">'+Translation.tr.SAVE+'</span>' +
+				'</div>';
+	}
+
+	itemMenu(name, uniqLabel){
+		return '<div class="side-menu-form-wrapper__item">' +
+  					'<div id="'+uniqLabel+'" class="side-form-group__section-block">'+name+'</div>' +
+					'<span data-removed="side-remove-menu-item" class="side-remove-on-tree fa fa-remove" data-label="'+uniqLabel+'"=></span>' +
+				'</div>';
+	}
+
+	itemSubMenu(name, uniqLabel){
+		return '<div class="side-menu-form-wrapper__submenu">' +
+				  '<div class="side-menu-form-wrapper__general" id="'+uniqLabel+'">' +
+				    '<div class="side-form-group__section-block side-main-tree">' +
+				    '<span class="side-name-of-menu">'+name+'</span>' +
+				    '<span data-template="itemMenu" data-content="side-add-menu-button" data-id="'+uniqLabel+'" class="side-card-wrapper__button side-card-mini-button">'+Translation.tr.ADD_ITEMS+'</span>'+
+				    '</div>' + 
+				    '<span data-removed="side-remove-menu-submenu" class="side-remove-on-tree fa fa-remove" data-label="'+uniqLabel+'"></span>' +
+				  '</div>';
+				 
 	}
 
 }

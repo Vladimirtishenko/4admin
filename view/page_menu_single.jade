@@ -22,11 +22,6 @@ block content
 								input(type="text" name="title_en" id="title_en" placeholder="Title in english" value=title)
 								span Title
 						.side-form-group
-							label(for="communication_multilang")
-								select(type="text" name="communication" id="communication_multilang")
-									option(value="new" selected) Empty
-								span General page
-						.side-form-group
 							label(for="google_keywords_ru")
 								- var metak = pages.ru ? pages.ru.metak : "";
 								input(id="google_keywords_ru" name="metak_ru" placeholder="Google Meta Keywords на русском" value=metak)

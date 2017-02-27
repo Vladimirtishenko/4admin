@@ -1,6 +1,7 @@
 var mainModule = require('../../main/main.js');
 var pageModule = require('../page.js');
 var urlHelper = require('../../../helper/urlHelper.js');
+var Settings = require('../../settings/settings.js');
 var async = require('async');
 
 module.exports.get = function(req, res, next) {
@@ -19,16 +20,30 @@ module.exports.get = function(req, res, next) {
 		                callback(null, data);
 		            })
 	        	} else {
-	        		callback(null, {});
+	        		pageModule.getEmptyVariablesByLang(function(err, data) {
+		                if (err) next(err);
+		                callback(null, data);
+		            })
 	        	}
+	        },
+	        settings: function(callback){
+	        	Settings.getParams('menu', function(err, data){
+	        		if (err) next(err);
+		            callback(null, data);
+	        	})
 	        }
 	    }, function(err, results) {
+	    	var module = urlHelper(results.modules.modules, req.originalUrl);
+
+	    	console.log(results.settings);
+
 	        res.render('view/page_single', {
-	            title: 'Page',
-	            modules: results.modules,
+	            title: module.title,
+	            data: results.modules,
 	            pages: results.pages,
+	            menu: results.settings,
 	            linksToAdd: 'page/show',
-	            link: String(urlHelper(req.originalUrl))
+	            link: String(module.url)
 	        });
 	    });
 

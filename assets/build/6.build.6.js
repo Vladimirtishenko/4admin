@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 14:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11,11 +11,11 @@ webpackJsonp([6],{
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Remove__model = __webpack_require__(15);
+	var _Remove__model = __webpack_require__(19);
 
 	var _Remove__model2 = _interopRequireDefault(_Remove__model);
 
-	var _Error = __webpack_require__(13);
+	var _Error = __webpack_require__(7);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -51,7 +51,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 15:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -70,7 +70,7 @@ webpackJsonp([6],{
 
 	var _Notification2 = _interopRequireDefault(_Notification);
 
-	var _Error = __webpack_require__(13);
+	var _Error = __webpack_require__(7);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -117,7 +117,7 @@ webpackJsonp([6],{
 			key: 'modelAppend',
 			value: function modelAppend(json) {
 				__webpack_require__.e/* nsure */(5, function () {
-					var Model = __webpack_require__(7)("./" + json.path + '/' + json.model).default;
+					var Model = __webpack_require__(8)("./" + json.path + '/' + json.model).default;
 					Model.removeContents(json);
 				});
 			}

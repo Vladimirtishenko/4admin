@@ -8,5 +8,6 @@ module.exports = function(app){
 	require('../modules/page_menu/routes/page_menu.js')(app);
 	require('../modules/language/routes/language.js')(app);
 	require('../modules/users/routes/user.js')(app);
+	require('../modules/menu/routes/menu.js')(app);
 
 }

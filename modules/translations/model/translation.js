@@ -8,6 +8,7 @@ var schema = new mongoose.Schema({
     metad: String,
     metak: String,
     lang_key: String,
+    value: mongoose.Schema.Types.Mixed
 }, { collection: 'translations' });
 // Model
 module.exports = mongoose.model('translations', schema);

@@ -49,7 +49,9 @@ Install.prototype.module = function(db, controllFlow) {
                 status: true
             }, { upsert: true, new: true }, function(err, data) {
 
-                if (err) { callback(err); return;    }
+                console.log(data);
+
+                if (err) { callback(err); return;   }
 
                 var mainObject = Modules[key];
 

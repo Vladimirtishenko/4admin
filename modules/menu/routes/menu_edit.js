@@ -1,10 +1,15 @@
+var Menu = require('../menu.js');
 var mainModule = require('../../main/main.js');
-var carouselModule = require('../carousel.js');
 var urlHelper = require('../../../helper/urlHelper.js');
 var async = require('async');
 
 module.exports.get = function(req, res, next){
 	
+    if(!req.params.id){
+        next();
+        res.end();
+    }
+
 	async.parallel({
         modules: function(callback) {
             mainModule.getModules(req.i18n_lang, req.session.user, function(err, data) {
@@ -12,24 +17,29 @@ module.exports.get = function(req, res, next){
                 callback(null, data);
             })
         },
-        carouselCategory: function(callback) {
-            carouselModule.getAllCategory(function(err, data) {
+        menu: function(callback){
+            Menu.getMenuById(req.params.id, function(err, data){
+                if (err) next(err);
+                callback(null, data);
+            }) 
+        },
+        page: function(callback){
+            Menu.findAllPage(req.i18n_lang, function(err, data){
                 if (err) next(err);
                 callback(null, data);
             })
         }
     }, function(err, results) {
-
+   
         var module = urlHelper(results.modules.modules, req.originalUrl);
 
-        res.render('view/tables_view_carousel_category', {
+        res.render('view/menu.jade', {
             title: module.title,
             data: results.modules,
-            general: results.carouselCategory,
-            linksToAdd: 'carousel/add',
-            linksToEdit: 'carousel/item_edit',
-            linkToDelete: 'carousel/delete',
+            menu: results.menu,
+            page: results.page,
             link: String(module.url)
         });
     });
+
 }

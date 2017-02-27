@@ -96,5 +96,21 @@ export default class Helper {
         xhr.send(data || null);
     }
 
+    unique(){
+        let letters = 'QWERTYUIOPASDFGHJKLZXCVBNMzaqwsxxcderfvbgtyhnmjuiklop',
+            count = letters.length,
+            intval = new Date().getTime(),
+            result = '';
+
+        for(let i = 0; i < 4; i++) {
+                let last= intval%count;
+
+                intval=(intval-last)/count; 
+
+                result += letters[last];
+        }
+        return result + new Date().getTime() + (result.split("").reverse().join("")) + (String(Math.random())).slice(2);
+    }
+
 
 }

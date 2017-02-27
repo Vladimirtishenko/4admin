@@ -1,0 +1,56 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					h2.side-table-wrapper__title=menu.label
+					a(href="/4admin/menu").side-button.side-card-wrapper__button=texts.BACK
+
+				.side-form-wrapper.side-menu-form-wrapper
+					form.side-menu-form-wrapper__event-remove
+						.side-menu-form-wrapper__add-items(data-menu-id=""+menu._id)
+						
+		
+	.side-modal-wrapper
+		.side-modal-wrapper__item.side-add-menu-button
+			section.side-modal-wrapper__section
+				.side-modal-wrapper__section-absolute-button
+					span.side-absolute-action-button.close-item-menu.fa.fa-close
+				h1.side-modal-wrapper__title=texts.ADD_MENU_ITEM
+				article.side-modal-wrapper__find-item
+					form.side-modal-wrapper__form.event-needed
+						.side-form-group.side-modal-wrapper__item-form
+							each val, index in data.language_keys
+								- var key = index.toUpperCase();
+								label.side-modal-wrapper__item-form-label(for=index)
+									span.side-form-group__section-title=texts.TITLE + " " + key
+									input(name=index type="text" placeholder=texts.TITLE + " " + key)
+						.side-form-group.side-modal-wrapper__item-form
+							label.side-modal-wrapper__item-form-label-full(for="page")
+								span.side-form-group__section-title=texts.PAGE_BIND
+								.side-wrap-fields-form
+									select(id="page")
+										option(value='')=texts.EMPTY
+										each items in page
+											option(value=items.items[0].table_name+"/"+items._id)=items.items[0].title
+									button.side-button.submit-button
+										span.fa.fa-floppy-o
+
+		.side-modal-wrapper__item.side-add-menu-submenu
+			section.side-modal-wrapper__section
+				.side-modal-wrapper__section-absolute-button
+					span.side-absolute-action-button.close-item-menu.fa.fa-close
+				h1.side-modal-wrapper__title=texts.ADD_SUBMENU
+				article.side-modal-wrapper__find-item
+					form.side-modal-wrapper__form.event-needed
+						.side-form-group.side-modal-wrapper__item-form
+							each val, index in data.language_keys
+								- var key = index.toUpperCase();
+								label.side-modal-wrapper__item-form-label(for=index)
+									span.side-form-group__section-title=texts.TITLE + " " + key
+									input(name=index type="text" placeholder=texts.TITLE + " " + key)
+						button.side-button.side-mini-button.submit-button
+							span.fa.fa-floppy-o
+
