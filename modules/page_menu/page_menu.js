@@ -45,6 +45,43 @@ Page.prototype.getPageId = function(id, callback) {
     })
 }
 
+Page.prototype.getPageIdByFE = function(lang, id, callback){
+        
+    var self = this;
+
+    Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'translation'
+        },
+    }, 
+    {
+        $match: {
+            "_id" : self.getId(id)
+        }
+    },
+    {
+        $project: {
+            "translation": {
+                "$arrayElemAt": [
+                    {
+                        "$filter": {
+                            "input": "$translation",
+                            "as": "page",
+                            "cond": { "$eq": ["$$page.lang_key", lang] }
+                        }
+                    },
+                    0
+                ]
+            }
+        }
+    }], function(err, data) {
+        callback(err, data)
+    })
+}
+
 Page.prototype.getItemById = function(_id, callback){
     Translation.getByParams({ "item_id": _id}, function(err, data) {
         callback(err, data);
@@ -163,13 +200,16 @@ Page.prototype.getPageItems = function(lang, _id, callback) {
         $project: {
         	"page_id": "$page_id",
             "items": {
-                "$filter": {
-                    "input": "$items",
-                    "as": "page",
-                    "cond": {
-                        "$eq": ["$$page.lang_key", lang],
-                    }
-                }
+                "$arrayElemAt": [
+                    {
+                        "$filter": {
+                            "input": "$items",
+                            "as": "page",
+                            "cond": { "$eq": ["$$page.lang_key", lang] }
+                        }
+                    },
+                    0
+                ]
             }
         }
     }], function(err, data) {

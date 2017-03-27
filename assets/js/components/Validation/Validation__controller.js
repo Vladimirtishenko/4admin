@@ -26,14 +26,17 @@ class Validation extends Helper {
 	}
 
 	requiredField(){
-		let elements = this.form.elements;
+		let elements = this.form.elements,
+			type = this.form.getAttribute('data-type'),
+			enctype = type ? null : this.form.enctype;
 
-		this.ValidationAction.getElements(elements);
+		this.ValidationAction.getElements(elements, type);
 
 		let objectToSend = this.ValidationAction.getStatus();
 
 		if(objectToSend.status){
-			ValidationModel.sendRequest(objectToSend.fields, this.form.action, this.form);
+			let dataToSend = typeof objectToSend.fields == 'string' ? objectToSend.fields.slice(0, -1) : objectToSend.fields;
+			ValidationModel.sendRequest(dataToSend, this.form.action, this.form, enctype);
 		} else {
 			Notification.codeToNotify(Error.errorCode('UNCORRECT_FIELD', 'ERROR'));
 		}

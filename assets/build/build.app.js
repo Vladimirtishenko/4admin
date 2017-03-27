@@ -123,7 +123,7 @@
 
 	var _Accordeon__controller2 = _interopRequireDefault(_Accordeon__controller);
 
-	var _User__controller = __webpack_require__(24);
+	var _User__controller = __webpack_require__(25);
 
 	var _User__controller2 = _interopRequireDefault(_User__controller);
 
@@ -169,7 +169,7 @@
 				new _Menu__controller2.default(document.querySelector('.side-open-menu'));
 				new _Validation__controller2.default(document.querySelectorAll('.table-side-to-validate'));
 				new _Remove__controller2.default(document.querySelectorAll('.table-side-remove'));
-				new _Uploader__controller2.default(document.querySelectorAll('.upload-button'));
+				new _Uploader__controller2.default(document.querySelector('#image_uploaded'));
 				new _Accordeon__controller2.default(document.querySelectorAll('.side-add-block-event'));
 				new _User__controller2.default(document.querySelector('.side-user'));
 				new _MenuModule__controller2.default(document.querySelector('.side-menu-form-wrapper__add-items'));
@@ -456,14 +456,17 @@
 		}, {
 			key: 'requiredField',
 			value: function requiredField() {
-				var elements = this.form.elements;
+				var elements = this.form.elements,
+				    type = this.form.getAttribute('data-type'),
+				    enctype = type ? null : this.form.enctype;
 
-				this.ValidationAction.getElements(elements);
+				this.ValidationAction.getElements(elements, type);
 
 				var objectToSend = this.ValidationAction.getStatus();
 
 				if (objectToSend.status) {
-					_Validation__model2.default.sendRequest(objectToSend.fields, this.form.action, this.form);
+					var dataToSend = typeof objectToSend.fields == 'string' ? objectToSend.fields.slice(0, -1) : objectToSend.fields;
+					_Validation__model2.default.sendRequest(dataToSend, this.form.action, this.form, enctype);
 				} else {
 					_Notification2.default.codeToNotify(_Error2.default.errorCode('UNCORRECT_FIELD', 'ERROR'));
 				}
@@ -587,15 +590,18 @@
 
 		_createClass(ValidationModel, [{
 			key: 'sendRequest',
-			value: function sendRequest(string, action, form) {
+			value: function sendRequest(string, action, form, type) {
 				this.form = form;
-				this.xhrRequest('POST', action, 'application/x-www-form-urlencoded', string.slice(0, -1), this.responseHandler.bind(this));
+
+				this.xhrRequest('POST', action, type, string, this.responseHandler.bind(this));
 			}
 		}, {
 			key: 'responseHandler',
 			value: function responseHandler(obj) {
 				try {
 					var json = JSON.parse(obj);
+
+					console.log(json);
 
 					if (json.status == 200 && json.model) {
 						this.modelAppend(json);
@@ -1413,8 +1419,10 @@
 			var _this = _possibleConstructorReturn(this, (Uploader.__proto__ || Object.getPrototypeOf(Uploader)).call(this));
 
 			if (!el) return _possibleConstructorReturn(_this);
-			_this.url = '/4admin/carousel/item_edit';
+			_this.img = document.getElementById('image_uploaded__view');
+
 			_this.flyEvent('add', ['change'], [el], _this.uploadHandler.bind(_this));
+
 			return _this;
 		}
 
@@ -1425,16 +1433,16 @@
 
 				var element = event.target || null;
 				if (!element) return;
-				var direction = element.getAttribute('data-action');
 
-				if (!this.ActionUpload) {
-					__webpack_require__.e/* nsure */(7, function () {
-						var ActionUpload = __webpack_require__(21).default;
-						_this2.ActionUpload = new ActionUpload();
-						_this2.ActionUpload.generateRequest(direction, element, _this2.url, _this2.uploadHandler.bind(_this2));
-					});
-				} else {
-					this.ActionUpload.generateRequest(direction, element, this.url, this.uploadHandler.bind(this));
+				var file = element.files[0],
+				    reader = new FileReader();
+
+				reader.onload = function () {
+					_this2.img.src = reader.result;
+				};
+
+				if (file) {
+					reader.readAsDataURL(file);
 				}
 			}
 		}]);
@@ -1445,7 +1453,8 @@
 	exports.default = Uploader;
 
 /***/ },
-/* 24 */
+/* 24 */,
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

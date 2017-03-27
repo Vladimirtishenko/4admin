@@ -35,8 +35,6 @@ module.exports.get = function(req, res, next) {
 	    }, function(err, results) {
 	    	var module = urlHelper(results.modules.modules, req.originalUrl);
 
-	    	console.log(results.settings);
-
 	        res.render('view/page_single', {
 	            title: module.title,
 	            data: results.modules,

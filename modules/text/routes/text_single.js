@@ -14,12 +14,15 @@ module.exports.get = function(req, res, next) {
 	        },
 	        textPage: function(callback) {
 	        	if(req.query._id){
-	        		 textModule.getPageId(req.query._id, function(err, data) {
+	        		 textModule.getPageId(req.query._id, req.i18n_lang, function(err, data) {
 		                if (err) next(err);
 		                callback(null, data);
 		            })
 	        	} else {
-	        		callback(null, {});
+	        		textModule.getEmptyVariablesByLang(function(err, data) {
+		                if (err) next(err);
+		                callback(null, data);
+		            })
 	        	}
 	        }
 	    }, function(err, results) {
@@ -29,7 +32,7 @@ module.exports.get = function(req, res, next) {
 	        res.render('view/text_single', {
 	            title: module.title,
 	            data: results.modules,
-	            textPage: results.textPage,
+	            textPage: results.textPage[0],
 	            linksToAdd: 'page/show',
 	            link: String(module.url)
 	        });

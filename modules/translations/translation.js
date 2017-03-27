@@ -2,7 +2,7 @@ var TranslationModel = require('./model/translation.js');
 var Language = require('../language/language.js');
 var async = require('async');
 
-function Translation (){
+function Translation() {
     this.schema = TranslationModel.schema.obj;
     this.lang = ['ru', 'en'];
 }
@@ -25,12 +25,12 @@ Translation.prototype.deNormalizeVariables = function(argument) {
 
     var objToUpdate = {},
         idObject = {};
-        
+
     idObject[argument['_id']] = {};
 
     for (var key in argument) {
 
-        if(typeof argument[key] == 'object' && this.lang.indexOf(key) > -1){
+        if (typeof argument[key] == 'object' && this.lang.indexOf(key) > -1) {
 
             idObject[argument['_id']][key] = argument[key];
 
@@ -54,13 +54,13 @@ Translation.prototype.generateTranslateVariables = function(argument) {
                 keys = arr[0],
                 lang = arr[1];
 
-            if(lang == "ru" || lang == "en"){
+            if (lang == "ru" || lang == "en") {
                 try {
-                translations[lang][keys] = argument[key];
+                    translations[lang][keys] = argument[key];
                 } catch (e) {
                     translations[lang] = {};
                     translations[lang][keys] = argument[key];
-                } 
+                }
             }
         }
     }
@@ -70,19 +70,19 @@ Translation.prototype.generateTranslateVariables = function(argument) {
 }
 
 
-Translation.prototype.structurizeObjectMultilang = function (data) {
-    
+Translation.prototype.structurizeObjectMultilang = function(data) {
+
     var objStructurize = {};
 
     for (var i = data.length - 1; i >= 0; i--) {
-        
+
         var langKey = data[i].lang_key,
             itemId = data[i].item_id,
             dataObj = data[i];
 
         objStructurize['_id'] = itemId;
         objStructurize[langKey] = dataObj;
-       
+
     }
 
     return objStructurize;
@@ -91,10 +91,10 @@ Translation.prototype.structurizeObjectMultilang = function (data) {
 }
 
 
-Translation.prototype.updateTranslations = function (argument, collection, id, callback) {
+Translation.prototype.updateTranslations = function(argument, collection, id, callback) {
 
-	var objToInsert = this.generateTranslateVariables(argument);
-    	upsertedArray = [];
+    var objToInsert = this.generateTranslateVariables(argument);
+    upsertedArray = [];
 
     async.forEachOf(objToInsert, function(value, key, cb) {
 
@@ -114,25 +114,56 @@ Translation.prototype.updateTranslations = function (argument, collection, id, c
                 if (err) {
                     cb(err);
                 } else {
-                	upsertedArray.push(data);
+                    upsertedArray.push(data);
                     cb();
                 }
             })
 
     }, function(err) {
-    	if(err){
-    		callback(err, null)
-    	} else {
-    		callback(null, upsertedArray)
-    	}
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, upsertedArray)
+        }
     });
 }
 
+Translation.prototype.updateWithoutChanged = function(data, id, callback){
 
-Translation.prototype.getById = function (id, callback) {
-    TranslationModel.find({"item_id": id}, function (err, data) {
-        
-        if(err) {callback(err, null)}
+     async.forEachOf(data, function(val, key, cb) {
+
+        TranslationModel.findOneAndUpdate({
+            item_id: id,
+            lang_key: val.lang_key
+        },
+        {
+            $set : {
+                value: val.value
+            }
+        },
+        function(err, data) {
+            if (err) {
+                cb(err);
+            } else {
+                cb();
+            }
+        })
+
+    }, function(err) {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, {})
+        }
+    });
+
+}
+
+
+Translation.prototype.getById = function(id, callback) {
+    TranslationModel.find({ "item_id": id }, function(err, data) {
+
+        if (err) { callback(err, null) }
 
         var dataStructorize = this.structurizeObjectMultilang(data);
 
@@ -141,11 +172,11 @@ Translation.prototype.getById = function (id, callback) {
     }.bind(this))
 }
 
-Translation.prototype.getByParams = function (params, callback) {
+Translation.prototype.getByParams = function(params, callback) {
 
-    TranslationModel.find(params, function (err, data) {
-        
-        if(err) {callback(err, null)}
+    TranslationModel.find(params, function(err, data) {
+
+        if (err) { callback(err, null) }
 
         var dataStructorize = this.structurizeObjectMultilang(data);
 
@@ -154,28 +185,51 @@ Translation.prototype.getByParams = function (params, callback) {
     }.bind(this))
 }
 
-Translation.prototype.deleteItems = function(id, callback){
-    TranslationModel.remove({item_id: {$in: id }}, function (err, doc) {
+Translation.prototype.removeValue = function(id, label, callback){
+
+    var self = this;
+
+    TranslationModel.find({item_id: id}, function(err, data){
+
+        if(err){
+            callback(err, null);
+        }
+
+
+        for (var i = 0; i < data.length; i++) {
+            delete data[i].value[label];
+        }
+
+        self.updateWithoutChanged(data, id, function(err, data){
+            callback(err, data);
+        })
+
+
+    })
+
+}
+
+Translation.prototype.deleteItems = function(id, callback) {
+    TranslationModel.remove({ item_id: { $in: id } }, function(err, doc) {
         callback(null, doc);
     })
 }
 
-Translation.prototype.deleteItemsByMultiply = function(ids, callback){
-    TranslationModel.remove({item_id: {$in: ids }}, function (err, doc) {
+Translation.prototype.deleteItemsByMultiply = function(ids, callback) {
+    TranslationModel.remove({ item_id: { $in: ids } }, function(err, doc) {
         callback(null, doc);
     })
 }
 
-Translation.prototype.addTranslationWithValue = function(id, translation, callback){
+Translation.prototype.addTranslationWithValue = function(id, translation, callback) {
 
-    async.forEachOf(translation, function(v, k, cb){
+    async.forEachOf(translation, function(v, k, cb) {
 
         TranslationModel.findOneAndUpdate({
                 item_id: id,
                 lang_key: k
-            },
-            { $set: 
-                {
+            }, {
+                $set: {
                     lang_key: k,
                     item_id: id,
                     table_name: 'menu',
@@ -193,31 +247,53 @@ Translation.prototype.addTranslationWithValue = function(id, translation, callba
                 }
             })
 
-    }, function(err){
+    }, function(err) {
         callback(err);
     })
 
 }
 
-Translation.prototype.verifyTranslationValue = function(translations, callback){
+Translation.prototype.updateById = function(id, obj, callback) {
+
+
+    TranslationModel.findOneAndUpdate({
+            item_id: id,
+            lang_key: obj.lang_key
+        }, {
+            $set: obj
+        }, {
+            upsert: true,
+            new: true
+        },
+        function(err, data) {
+            if (err) {
+                callback(err);
+            } else {
+                callback();
+            }
+        })
+
+}
+
+Translation.prototype.verifyTranslationValue = function(translations, callback) {
 
     var translation = {};
 
-    Language.getLangKeys(function(err, data){
-        if(err){
+    Language.getLangKeys(function(err, data) {
+        if (err) {
             callback(err, null)
         }
 
         for (var i = 0; i < data.length; i++) {
-            
-            if(!translations[data[i]]){
+
+            if (!translations[data[i]]) {
                 translation[data[i]] = {};
             } else {
                 translation[data[i]] = translations[data[i]].value;
             }
 
         }
-        
+
         callback(null, translation);
 
     })

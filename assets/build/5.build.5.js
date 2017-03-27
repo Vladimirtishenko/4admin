@@ -1,8 +1,6 @@
-webpackJsonp([5,1,3,4,7,8],[
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */
+webpackJsonp([5,1,3,4,8],{
+
+/***/ 3:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52,11 +50,8 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = MenuAction;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
+
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
@@ -92,14 +87,12 @@ webpackJsonp([5,1,3,4,7,8],[
 		"./Templates/Templates.js": 10,
 		"./Translation/translation__single": 11,
 		"./Translation/translation__single.js": 11,
-		"./Uploader/Uploader__action": 21,
-		"./Uploader/Uploader__action.js": 21,
 		"./Uploader/Uploader__controller": 23,
 		"./Uploader/Uploader__controller.js": 23,
-		"./User/User__controller": 24,
-		"./User/User__controller.js": 24,
-		"./User/User__model": 25,
-		"./User/User__model.js": 25,
+		"./User/User__controller": 25,
+		"./User/User__controller.js": 25,
+		"./User/User__model": 26,
+		"./User/User__model.js": 26,
 		"./Validation/Validation__action": 22,
 		"./Validation/Validation__action.js": 22,
 		"./Validation/Validation__controller": 4,
@@ -122,7 +115,8 @@ webpackJsonp([5,1,3,4,7,8],[
 
 
 /***/ },
-/* 9 */
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -227,9 +221,8 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = AccordeonAction;
 
 /***/ },
-/* 10 */,
-/* 11 */,
-/* 12 */
+
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -377,8 +370,8 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = new AccordeonModel();
 
 /***/ },
-/* 13 */,
-/* 14 */
+
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -440,115 +433,8 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = AccordeonDispatcher;
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _helper = __webpack_require__(1);
-
-	var _helper2 = _interopRequireDefault(_helper);
-
-	var _Notification = __webpack_require__(5);
-
-	var _Notification2 = _interopRequireDefault(_Notification);
-
-	var _Templates = __webpack_require__(10);
-
-	var _Templates2 = _interopRequireDefault(_Templates);
-
-	var _Validation__action = __webpack_require__(22);
-
-	var _Validation__action2 = _interopRequireDefault(_Validation__action);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var UploadAction = function (_Helper) {
-		_inherits(UploadAction, _Helper);
-
-		function UploadAction() {
-			_classCallCheck(this, UploadAction);
-
-			return _possibleConstructorReturn(this, (UploadAction.__proto__ || Object.getPrototypeOf(UploadAction)).call(this));
-		}
-
-		_createClass(UploadAction, [{
-			key: 'generateRequest',
-			value: function generateRequest(direction, element, url, callback) {
-				this.url = url;
-				this.callback = callback;
-				this.direction = direction;
-				this.element = element;
-				this.itemToPast = document.querySelector('.side-item-to-paste');
-
-				var file = this.element.files[0],
-				    category_id = this.element.getAttribute('data-category'),
-				    _id = this.element.getAttribute('data-id') ? "?_id=" + this.element.getAttribute('data-id') : "",
-				    _src = this.element.getAttribute('data-current-src') ? "&_src=" + this.element.getAttribute('data-current-src') : "",
-				    formData = new FormData(),
-				    boundary = String(Math.random()).slice(2);
-
-				formData.append('image', file, file.name);
-
-				this.xhrRequest('POST', this.url + '/' + category_id + _id + _src, null, formData, this.responseUpload.bind(this));
-			}
-		}, {
-			key: 'responseUpload',
-			value: function responseUpload(obj) {
-				try {
-					var json = JSON.parse(obj);
-					if (json.status == 200) {
-						this.pageUpdated(json.doc);
-					} else {
-						_Notification2.default.codeToNotify(json.message);
-					}
-				} catch (e) {}
-			}
-		}, {
-			key: 'pageUpdated',
-			value: function pageUpdated(doc) {
-				if (this.direction == 'new-upload') {
-					var template = _Templates2.default.carouselTemplate(doc.src, doc.category_id, doc._id);
-					this.itemToPast.insertAdjacentHTML('beforeend', template);
-					var inputBindind = this.itemToPast.lastElementChild.querySelector('[id*="side-uploaded-file-"]'),
-					    deleteButtonBinding = this.itemToPast.lastElementChild.querySelector('.side-remove-item');
-					this.flyEvent('add', ['change'], [inputBindind], this.callback);
-				} else {
-					var form = this.element.closest('.side-carousel-item'),
-					    input = form.querySelector('[id*="side-uploaded-file-"]'),
-					    image = form.querySelector('.side-carousel-item__image img');
-
-					image.src = doc.src;
-					input.setAttribute('data-current-src', doc.src);
-				}
-			}
-		}]);
-
-		return UploadAction;
-	}(_helper2.default);
-
-	exports.default = UploadAction;
-
-/***/ },
-/* 22 */
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -574,12 +460,13 @@ webpackJsonp([5,1,3,4,7,8],[
 
 		_createClass(ValidationAction, [{
 			key: 'getElements',
-			value: function getElements(el) {
+			value: function getElements(el, type) {
 				this.passwordInputArray = [];
+				this.formData = type ? new FormData() : null;
 				this.validationObject = { status: true, fields: '' };
 
 				for (var i = 0; i < el.length; i++) {
-					if (el[i].type == 'hidden' || el[i].type == 'text' || el[i].type == 'email' || el[i].tagName == 'SELECT' || el[i].tagName == 'TEXTAREA') {
+					if (el[i].type == 'hidden' || el[i].type == 'text' || el[i].type == 'email' || el[i].tagName == 'SELECT' || el[i].tagName == 'TEXTAREA' || el[i].type == 'file') {
 						this.objectRegExp(el[i].name, el[i]);
 					}
 					if (el[i].type == 'password' && (el[i].name == 'password' || el[i].name == 'repeat_password')) {
@@ -609,19 +496,24 @@ webpackJsonp([5,1,3,4,7,8],[
 				}
 
 				var regObj = {
-					title_ru: /[А-Яа-я0-9]/,
+					title_ru: /[А-Яа-яA-Za-z0-9]/,
 					title_en: /[A-Za-z0-9]/,
-					description_ru: 150,
-					description_en: 150,
+					description_ru: 50,
+					description_en: 50,
 					password: /[A-Za-z0-9]/,
 					repeat_password: /[A-Za-z0-9]/,
 					new_password: /[A-Za-z0-9]/,
 					old_password: /[A-Za-z0-9]/,
 					username: /[A-Za-z]/
 				},
-				    content = field.tagName == 'TEXTAREA' && editor ? CKEDITOR.instances[name].getData() : field.value;
+				    content = field.tagName == 'TEXTAREA' && editor ? CKEDITOR.instances[name].getData() : field.type == 'file' ? field.files[0] : field.value;
 
-				this.validationObject.fields += name + '=' + encodeURIComponent(content) + '&';
+				if (this.formData) {
+					this.formData.append(name, content);
+					this.validationObject.fields = this.formData;
+				} else {
+					this.validationObject.fields += name + '=' + encodeURIComponent(content) + '&';
+				}
 
 				if (regObj[name]) {
 
@@ -651,9 +543,8 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = ValidationAction;
 
 /***/ },
-/* 23 */,
-/* 24 */,
-/* 25 */
+
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -704,4 +595,5 @@ webpackJsonp([5,1,3,4,7,8],[
 	exports.default = new UserModel();
 
 /***/ }
-]);
+
+});

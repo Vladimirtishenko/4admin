@@ -27,7 +27,7 @@ module.exports.get = function(req, res, next){
             data: results.modules,
             general: results.carouselCategory,
             linksToAdd: 'carousel/add',
-            linksToEdit: 'carousel/item_edit',
+            linksToEdit: 'carousel/show',
             linkToDelete: 'carousel/delete',
             link: String(module.url)
         });

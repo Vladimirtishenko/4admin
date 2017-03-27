@@ -26,7 +26,7 @@ class App extends Helper {
 		new Menu(document.querySelector('.side-open-menu'));
 		new Validation(document.querySelectorAll('.table-side-to-validate'));
 		new Remove(document.querySelectorAll('.table-side-remove'));
-		new Uploader(document.querySelectorAll('.upload-button'));
+		new Uploader(document.querySelector('#image_uploaded'));
 		new Accordeon(document.querySelectorAll('.side-add-block-event'));
 		new User(document.querySelector('.side-user'));
 		new MenuModule(document.querySelector('.side-menu-form-wrapper__add-items'));

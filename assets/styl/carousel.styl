@@ -50,7 +50,7 @@
 	
 .side-carousel-item
 	border 3px solid #edeced
-	padding 20px 10px 0
+	padding 20px
 	margin-bottom 20px
 	
 .side-carousel-item__text-block .side-form-group label 
@@ -62,6 +62,7 @@
 	
 .side-carousel-item__image img 
 	width 100%
+	cursor pointer
 	
 .side-carousel-item__submited label 
 	width 100%
@@ -88,4 +89,32 @@
 	position absolute
 	left -999999px
 	opacity 0
+
+.side-image-carousel
+	display flex
+	justify-content space-between
+	flex-wrap wrap
 	
+.side-image-carousel__image
+	width 100%
+	
+.side-image-carousel__wrapper-img
+	text-align center
+	position relative
+
+.side-image-carousel-controls
+	position relative
+	width 100%
+	display flex
+	justify-content flex-end
+	
+.side-image-carousel-controls__item
+	color #000
+	cursor pointer
+	display inline-block
+	padding 2px 0px 5px 10px
+	&:hover
+		color blue i
+		
+.side-image-carousel__title
+	font-family CirceLight

@@ -2,7 +2,7 @@ var carouselModule = require('../carousel.js');
 
 module.exports.post = function(req,res,next){
 
-	if(!req.body.name){
+	if(!req.body.label){
 		res.json({
 			status: 404,
 			message: req.i18n_texts.ERROR.FIELD_NOT_BE_EMPTY
@@ -15,7 +15,7 @@ module.exports.post = function(req,res,next){
 		if(err){
 			res.json({
 				status: 500,
-				message: err
+				message: err.errorMsg
 			})
 		} else {
 			res.json({

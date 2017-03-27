@@ -1,6 +1,7 @@
 var Model = require('./model/index.js');
 var mongoose = require('../../lib/mongoose.js');
 var Translation = require('../translations/translation.js');
+var Language = require('../language/language.js');
 var async = require('async');
 
 function Text() {
@@ -32,11 +33,76 @@ Text.prototype.getAllpage = function(lang,callback){
     })
 }
 
-Text.prototype.getPageId = function(id, callback){
+Text.prototype.getAllForFE = function(lang, label, callback){
 
-	 Translation.getById(id, function (err, data) {
-        callback(err, data);
+    var self = this;
+
+    Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'translation'
+        },
+    }, 
+    {
+        $match: {
+            'label': {$in: label}
+        }
+    },
+    {
+        $project: {
+            "label": 1,
+            "translation": {
+                "$arrayElemAt": [
+                    {
+                        "$filter": {
+                            "input": "$translation",
+                            "as": "page",
+                            "cond": { "$eq": ["$$page.lang_key", lang] }
+                        }
+                    },
+                    0
+                ]
+            }
+        }
+    }], function(err, data) {
+        var obj = self.sort(data);
+        callback(err, obj)
     })
+}
+
+Text.prototype.sort = function(data){
+    var dataObj = {};
+
+    for (var i = 0; i < data.length; i++) {
+        dataObj[data[i].label] = data[i].translation
+    }
+
+    return dataObj;
+
+}
+
+Text.prototype.getPageId = function(id, lang, callback){
+
+    var self = this;
+
+    Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'translation'
+        },
+    }, 
+    {
+        $match: {
+            '_id': self.getId(id)
+        }
+    }], function(err, data) {
+        callback(err, data)
+    })
+
 }
 
 Text.prototype.createOrUpdatePage = function(variables, callback){
@@ -72,8 +138,33 @@ Text.prototype.createOrUpdatePage = function(variables, callback){
 
 }
 
-Text.prototype.getId = function () {
-	 return mongoose.Types.ObjectId();
+Text.prototype.getEmptyVariablesByLang = function(callback){
+    Language.getLangDescription(function(err, data){
+        if(err){
+            callback(err, null);
+            return;
+        } 
+
+        var schemaKeys = Object.keys(this.schema),
+            dataObj = {
+                translation: []
+            };
+
+        for (var i = 0; i < schemaKeys.length; i++) {
+            dataObj[schemaKeys[i]] = ''
+        }
+
+        for (var mark in data) {
+            dataObj.translation.push({lang_key: mark})
+        }
+
+        callback(null, [dataObj])
+
+    }.bind(this))
+}
+
+Text.prototype.getId = function(id) {
+    return id ? mongoose.Types.ObjectId(id) : mongoose.Types.ObjectId();
 }
 
 Text.prototype.delete = function (_id, callback) {

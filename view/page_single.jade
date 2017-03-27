@@ -34,6 +34,11 @@ block content
 											| Google Desc #{K}
 
 							.side-form-group
+									label(for="script")
+										input(type="text" name="script" id="script" value=page.script)
+										span Script
+
+							.side-form-group
 								button.side-button.submit-button=texts.SAVE
 	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
 	script.

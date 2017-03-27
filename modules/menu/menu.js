@@ -17,11 +17,56 @@ Menu.prototype.getAllMenu = function(callback) {
     })
 }
 
+Menu.prototype.getAllForFE = function(lang, callback){
+
+    var self = this;
+
+    Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'translation'
+        },
+    }, {
+        $project: {
+            "label": 1, 
+            "items": 1,
+            "translation": {
+                "$arrayElemAt": [
+                    {
+                        "$filter": {
+                            "input": "$translation",
+                            "as": "page",
+                            "cond": { "$eq": ["$$page.lang_key", lang] }
+                        }
+                    },
+                    0
+                ]
+            }
+        }
+    }], function(err, data) {
+        var sortMenu = self.sort(data);
+        callback(err, sortMenu)
+    })
+}
+
+Menu.prototype.sort = function(data){
+    var dataObj = {};
+
+    for (var i = 0; i < data.length; i++) {
+        dataObj[data[i].label] = {
+            items: data[i].items,
+            translation: data[i].translation.value
+        }
+    }
+
+    return dataObj;
+
+}
+
 Menu.prototype.addMenu = function(req, callback) {
     Model.update({ label: req.body.label }, req.body, { upsert: true, new: true, setDefaultsOnInsert: true }, function(err, data) {
-        
-        console.log(req.body);
-        console.log(err);
         callback(err, data);
     })
 }
@@ -127,11 +172,6 @@ Menu.prototype.removeMenu = function(id, callback) {
     });
 
 }
-
-Menu.prototype.removeItems = function() {
-
-}
-
 
 Menu.prototype.findAllPage = function(lang, callback) {
 

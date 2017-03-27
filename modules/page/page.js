@@ -55,6 +55,44 @@ Page.prototype.getPageId = function(id, callback) {
 
 }
 
+Page.prototype.getPageIdFE = function(id, lang, callback){
+
+    var self = this;
+
+    Model.aggregate([{
+        $lookup: {
+            from: 'translations',
+            localField: '_id',
+            foreignField: 'item_id',
+            as: 'translation'
+        },
+    }, 
+    {
+        $match: {
+            "_id": self.getId(id)
+        }
+    },
+    {
+        $project: {
+            "script": 1,
+            "translation": {
+                "$arrayElemAt": [
+                    {
+                        "$filter": {
+                            "input": "$translation",
+                            "as": "page",
+                            "cond": { "$eq": ["$$page.lang_key", lang] }
+                        }
+                    },
+                    0
+                ]
+            }
+        }
+    }], function(err, data) {
+        callback(err, data)
+    })
+}
+
 Page.prototype.getEmptyVariablesByLang = function(callback){
     Language.getLangDescription(function(err, data){
         if(err){

@@ -7,15 +7,19 @@ class ValidationModel extends Helper {
 		super();
 	}
 
-	sendRequest(string, action, form){
+	sendRequest(string, action, form, type){
 		this.form = form;
-		this.xhrRequest('POST', action, 'application/x-www-form-urlencoded', string.slice(0, -1), this.responseHandler.bind(this))
+
+		this.xhrRequest('POST', action, type, string, this.responseHandler.bind(this))
 	}
 
 	responseHandler(obj){
 		try{
 		    let json = JSON.parse(obj);
 			
+
+		    console.log(json);
+
 		    if(json.status == 200 && json.model){
 		   		this.modelAppend(json);
 		    }

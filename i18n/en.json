@@ -2,6 +2,7 @@
 	"VIEW": "View",
 	"HOME": "Home",
 	"ADD": "Add",
+	"ADD_ITEM": "Add item",
 	"ADD_BLOCK": "Add block",
 	"TITLE": "Title",
 	"LABEL": "Label",
@@ -46,7 +47,9 @@
 		"UNAMED_ERROR": "Sorry, maybe server error!",
 		"UNCORRECT_FIELD" : "Fill in the fields correctly",
 		"MENU_FAULT": "Menu is not recalculated, sorry try later!",
-		"MENU_IS_UNDEFINED": "Menu is not defined"
+		"MENU_IS_UNDEFINED": "Menu is not defined",
+		"ERR": "Error",
+		"ERR_URL": ""
 
 	},
 	"SUCCESS" : {
@@ -55,5 +58,13 @@
 		"USER_PASS_UPDATE" : "User password is updated!",
 		"CONTENT_UPDATE": "Success, the content has been updated!",
 		"MENU_RECALCULATE_UPDATE": "Menu recalculated successfully!"
+	},
+	"SITE" : {
+		"calendar" : "Economic calendar",
+		"bluechips": "Blue chips",
+		"contacts": "Contacts",
+		"sign": "Sign in",
+		"reg": "Registration",
+		"START_TRADING": "Start trading"
 	}
 }

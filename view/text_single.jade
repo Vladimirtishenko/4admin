@@ -12,25 +12,19 @@ block content
 						- if(textPage && textPage._id)
 							input(type="hidden" name="_id" value=textPage._id)
 						.side-form-group
-							label(for="title_ru")
-								- var title = textPage.ru ? textPage.ru.title : "";
-								input(type="text" name="title_ru" id="title_ru" placeholder="Заголовок на русском" value=title)
-								span Заголовок
-						.side-form-group
-							label(for="title_en")
-								- var title = textPage.en ? textPage.en.title : "";
-								input(type="text" name="title_en" id="title_en" placeholder="Title in english" value=title)
-								span Title
-						.side-form-group
-							label(for="description_ru")
-								- var description = textPage.ru ? textPage.ru.description : "";
-								textarea(id="description_ru" name="description_ru" placeholder="Описание на русском" required)=description
-								span Описание
-						.side-form-group
-							label(for="description_en")
-								- var description = textPage.en ? textPage.en.description : "";
-								textarea(id="description_en" name="description_en" placeholder="Description in english" required)=description
-								span Description
+							label(for="label")
+								input(type="text" name="label" id="label" placeholder=texts.LABEL value=textPage.label)
+								span=texts.LABEL
+						each text in textPage.translation
+							- var K = text.lang_key.toUpperCase();
+							.side-form-group
+								label(for="title_"+text.lang_key)
+									input(type="text" name="title_"+text.lang_key id="title_"+text.lang_key placeholder=texts.TITLE+" "+K value=text.title)
+									span=texts.TITLE+" "+K
+							.side-form-group
+								label(for="description_"+text.lang_key)
+									textarea(id="description_"+text.lang_key name="description_"+text.lang_key placeholder=texts.DESCRIPTION+" "+K required)=text.description
+									span=texts.DESCRIPTION+" "+K
 						.side-form-group
 							button.side-button.submit-button=texts.SAVE
 	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
