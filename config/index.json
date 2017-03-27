@@ -1,5 +1,5 @@
 {
-	"port": 25678,
+	"port": 3000,
 	"mongoose": {
 		"port": 27017,
 		"host": "mongodb://localhost/",
