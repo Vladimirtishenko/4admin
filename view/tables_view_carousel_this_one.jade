@@ -1,0 +1,35 @@
+extends ./layouts/_layout.jade
+
+block content
+	.container.side-card-wrapper
+		.row
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12
+				.side-flex.side-table-wrapper
+					a.side-button.side-card-wrapper__button(href="/4admin/carousel/show/"+carousel._id)=texts.BACK
+					h2.side-table-wrapper__title=title
+						
+			.col-xl-12.col-lg-12.col-md-12.col-sm-12.col-xs-12.side-item-to-paste.table-side-remove.table-side-to-validate(id="side-label-of-category")
+				form.side-carousel-item(action="/4admin/carousel/item_edit/"+carousel._id+"/"+number data-type="form-data")
+					.row
+						input(type="hidden" name="_id" value=carousel._id )
+						input(type="hidden" name="label" value=carousel.item.label )
+						.col-xl-4.col-lg-4.col-md-4.col-sm-4.col-xs-4.side-carousel-item__image
+							label(for="image_uploaded")
+								input(type="file" id="image_uploaded" name="image").side-table-wrapper__upload-button
+								img(id="image_uploaded__view" src=(carousel.item.src || "/4admin/assets/img/missing.png"))
+						.col-xl-8.col-lg-8.col-md-8.col-sm-8.col-xs-8.side-carousel-item__text-block
+							.side-form-group-carousel
+								each item, i in carousel.translation
+									- var title = item[carousel.item.label] ? item[carousel.item.label].title : '';
+									- var description = item[carousel.item.label] ? item[carousel.item.label].description : '';
+									label(for="title_"+i class="side-group-input")
+										input(type="text" name="title_"+i id="title_"+i placeholder=texts.TITLE + " " + i value=title)
+									label(for="description_"+i class="side-group-textarea")
+										textarea(id="description_"+i rows="4" name="description_"+i placeholder=texts.DESCRIPTION + " " + i )=description
+					.row-reverse.button-top-margin
+						button.side-button=texts.SAVE				
+
+
+
+
+					
