@@ -115,7 +115,7 @@
 
 	var _Remove__controller2 = _interopRequireDefault(_Remove__controller);
 
-	var _Uploader__controller = __webpack_require__(23);
+	var _Uploader__controller = __webpack_require__(21);
 
 	var _Uploader__controller2 = _interopRequireDefault(_Uploader__controller);
 
@@ -123,7 +123,7 @@
 
 	var _Accordeon__controller2 = _interopRequireDefault(_Accordeon__controller);
 
-	var _User__controller = __webpack_require__(25);
+	var _User__controller = __webpack_require__(22);
 
 	var _User__controller2 = _interopRequireDefault(_User__controller);
 
@@ -444,8 +444,8 @@
 				this.form = event.target;
 				event.preventDefault();
 				if (!this.ValidationAction) {
-					__webpack_require__.e/* nsure */(8, function () {
-						var ValidationAction = __webpack_require__(22).default;
+					__webpack_require__.e/* nsure */(7, function () {
+						var ValidationAction = __webpack_require__(24).default;
 						_this2.ValidationAction = new ValidationAction();
 						_this2.requiredField();
 					});
@@ -1385,9 +1385,7 @@
 	exports.default = Remove;
 
 /***/ },
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1453,8 +1451,7 @@
 	exports.default = Uploader;
 
 /***/ },
-/* 24 */,
-/* 25 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

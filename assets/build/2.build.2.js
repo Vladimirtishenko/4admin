@@ -1,4 +1,4 @@
-webpackJsonp([2,1,3,4,5,6,8],[
+webpackJsonp([2,1,3,4,5,6,7],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -92,14 +92,14 @@ webpackJsonp([2,1,3,4,5,6,8],[
 		"./Templates/Templates.js": 10,
 		"./Translation/translation__single": 11,
 		"./Translation/translation__single.js": 11,
-		"./Uploader/Uploader__controller": 23,
-		"./Uploader/Uploader__controller.js": 23,
-		"./User/User__controller": 25,
-		"./User/User__controller.js": 25,
-		"./User/User__model": 26,
-		"./User/User__model.js": 26,
-		"./Validation/Validation__action": 22,
-		"./Validation/Validation__action.js": 22,
+		"./Uploader/Uploader__controller": 21,
+		"./Uploader/Uploader__controller.js": 21,
+		"./User/User__controller": 22,
+		"./User/User__controller.js": 22,
+		"./User/User__model": 23,
+		"./User/User__model.js": 23,
+		"./Validation/Validation__action": 24,
+		"./Validation/Validation__action.js": 24,
 		"./Validation/Validation__controller": 4,
 		"./Validation/Validation__controller.js": 4,
 		"./Validation/Validation__model": 6,
@@ -571,7 +571,59 @@ webpackJsonp([2,1,3,4,5,6,8],[
 /***/ },
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Templates = __webpack_require__(10);
+
+	var _Templates2 = _interopRequireDefault(_Templates);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var UserModel = function () {
+		function UserModel() {
+			_classCallCheck(this, UserModel);
+		}
+
+		_createClass(UserModel, [{
+			key: 'stateContents',
+			value: function stateContents(json) {
+				var template = _Templates2.default.userTemplate(json.data._id, json.data.username),
+				    blockToInsert = document.querySelector('[data-user="' + json.data.role + '"]'),
+				    form = document.querySelector('.side-flex__add-right-user');
+
+				blockToInsert.insertAdjacentHTML('afterbegin', template);
+
+				form.reset();
+				form.parentNode.classList.remove('side-user__show-add');
+			}
+		}, {
+			key: 'removeContents',
+			value: function removeContents(json) {
+				var _id = json.data._id,
+				    el = document.querySelector('#user-id-' + _id);
+				el.parentNode.removeChild(el);
+			}
+		}]);
+
+		return UserModel;
+	}();
+
+	exports.default = new UserModel();
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -678,60 +730,6 @@ webpackJsonp([2,1,3,4,5,6,8],[
 	}();
 
 	exports.default = ValidationAction;
-
-/***/ },
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Templates = __webpack_require__(10);
-
-	var _Templates2 = _interopRequireDefault(_Templates);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var UserModel = function () {
-		function UserModel() {
-			_classCallCheck(this, UserModel);
-		}
-
-		_createClass(UserModel, [{
-			key: 'stateContents',
-			value: function stateContents(json) {
-				var template = _Templates2.default.userTemplate(json.data._id, json.data.username),
-				    blockToInsert = document.querySelector('[data-user="' + json.data.role + '"]'),
-				    form = document.querySelector('.side-flex__add-right-user');
-
-				blockToInsert.insertAdjacentHTML('afterbegin', template);
-
-				form.reset();
-				form.parentNode.classList.remove('side-user__show-add');
-			}
-		}, {
-			key: 'removeContents',
-			value: function removeContents(json) {
-				var _id = json.data._id,
-				    el = document.querySelector('#user-id-' + _id);
-				el.parentNode.removeChild(el);
-			}
-		}]);
-
-		return UserModel;
-	}();
-
-	exports.default = new UserModel();
 
 /***/ }
 ]);
