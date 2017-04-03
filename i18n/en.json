@@ -71,6 +71,23 @@
 		"rights": "All rights reserved",
 		"phone": "Phone:",
 		"fax": "Fax:",
-		"email": "Email:"
+		"email": "Email:",
+		"new_client": "REGISTRATION OF A NEW CLIENT",
+		"user_name": "Name",
+		"user_surname": "Surname",
+		"user_first_last_name": "First and last name",
+		"user_email": "E-mail",
+		"user_phone": "Phone number",
+		"user_phone_without_code": "Phone number without country code",
+		"sign_up": "Register",
+		"already_sign_up": "Already registered",
+		"new_lead": "Registration of a new lead",
+		"lead_reg": "Register a lead",
+		"pass": "Password",
+		"static_pass": "Static password",
+		"partner_code": "Partner code",
+		"show_news": "Show news for: ",
+		"day": "Day",
+		"week": "Week"
 	}
 }
