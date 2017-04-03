@@ -9,11 +9,12 @@ class MenuModule extends Helper {
 		if(!el) return;
 
 		this.el = el;
+		this.module = new MenuModel();
 		this.menuId = this.el.getAttribute('data-menu-id');
 		this.addItemForm = '.side-modal-wrapper__form';
 		this.itemBindObjects = null;
 
-		MenuModel.requestData(this.createMenuTree.bind(this), this.menuId)
+		this.module.requestData(this.createMenuTree.bind(this), this.menuId)
 
 	}
 
@@ -35,12 +36,13 @@ class MenuModule extends Helper {
 
 		for (let i = 0; i < elements.length; i++) {
 			if(elements[i].type == 'text'){
-				MenuModel.langArray[elements[i].name][uniq] = elements[i].value
+				this.module.langArray[elements[i].name][uniq] = elements[i].value
 			}
-			if(elements[i].tagName == 'SELECT'){
+
+			if(elements[i].tagName == 'SELECT' || (elements[i].type == 'url' && elements[i].value != '')){
 				temporary['link'] = elements[i].value;
 				temporary['label'] = uniq;
-			} 
+			}
 		}
 
 		if(!temporary['label']){
@@ -48,9 +50,9 @@ class MenuModule extends Helper {
 			temporary['label'] = uniq;
 		}
 
-		this.pushToArray(temporary, pushLabel, MenuModel.menuObject);
+		this.pushToArray(temporary, pushLabel, this.module.menuObject);
 
-		let temp = Templates[pushTemplate](MenuModel.langArray[MenuModel.lang][uniq], uniq);
+		let temp = Templates[pushTemplate](this.module.langArray[this.module.lang][uniq], uniq);
 
 		element.parentNode.insertAdjacentHTML('beforeend', temp);
 
@@ -59,29 +61,36 @@ class MenuModule extends Helper {
 	}
 	pushToArray(temporary, pushLabel, obj){
 		
+
+
+
 		if(obj._id && obj._id == pushLabel){
 			obj.items.push(temporary);
 			return;
 		}
 
+		
 		(function generator(obj) {
 			for (let key = 0; key < obj.length; key++) {
 				
 				if(obj[key].label == pushLabel){
 					obj[key].items.push(temporary);
-					return;
 				} else if(obj[key].label != pushLabel && obj[key].items){
 					generator(obj[key].items);
-					return;
 				}
 			}
 		})(obj.items)
+
+
+		console.log(this.module);
+
 
 	}
 
 	createMenuTree(){
 
-		let tmp = Templates.itemMenuGeneral(MenuModel.menuObject.label, MenuModel.menuObject._id);
+		let tmp = Templates.itemMenuGeneral(this.module.menuObject.label, this.module.menuObject._id),
+			self = this;
 
 		(function generator(obj) {
 
@@ -89,18 +98,18 @@ class MenuModule extends Helper {
 
 			for(let i = 0; i < obj.length; i++){
 
+
 				if(obj[i].items){
-					tmp += Templates.itemSubMenu(MenuModel.langArray[MenuModel.lang][obj[i].label], obj[i].label);
+					tmp += Templates.itemSubMenu(self.module.langArray[self.module.lang][obj[i].label], obj[i].label);
 					generator(obj[i].items);
 					tmp += "</div>";
-					return;
+					continue;
 				}
 
-				tmp += Templates.itemMenu(MenuModel.langArray[MenuModel.lang][obj[i].label], obj[i].label);
+				tmp += Templates.itemMenu(self.module.langArray[self.module.lang][obj[i].label], obj[i].label);
 
 			}
-		})(MenuModel.menuObject.items);
-
+		})(this.module.menuObject.items);
 
 		this.el.insertAdjacentHTML('afterbegin', tmp);
 
@@ -121,8 +130,8 @@ class MenuModule extends Helper {
 				document.querySelector('.side-menu-form-wrapper__event-remove')
 			], 
 			[
-				MenuModel.setMenuData.bind(MenuModel),
-				MenuModel.removeMenuData.bind(MenuModel)
+				this.module.setMenuData.bind(this.module),
+				this.module.removeMenuData.bind(this.module)
 			]);
 
 	}

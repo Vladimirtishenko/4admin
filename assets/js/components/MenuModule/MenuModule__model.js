@@ -106,4 +106,4 @@ class MenuModel extends Helper {
 
 }
 
-export default new MenuModel();
+export default MenuModel;

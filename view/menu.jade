@@ -20,7 +20,7 @@ block content
 					span.side-absolute-action-button.close-item-menu.fa.fa-close
 				h1.side-modal-wrapper__title=texts.ADD_MENU_ITEM
 				article.side-modal-wrapper__find-item
-					form.side-modal-wrapper__form.event-needed
+					form.side-modal-wrapper__form.event-needed(novalidate)
 						.side-form-group.side-modal-wrapper__item-form
 							each val, index in data.language_keys
 								- var key = index.toUpperCase();
@@ -35,6 +35,12 @@ block content
 										option(value='')=texts.EMPTY
 										each items in page
 											option(value=items.items[0].table_name+"/"+items._id)=items.items[0].title
+								
+						.side-form-group.side-modal-wrapper__item-form
+							label.side-modal-wrapper__item-form-label-full()
+								span.side-form-group__section-title=texts.URL_ADD_ANOTHER
+								.side-wrap-fields-form
+									input(type="url" name="url" placeholder=""+texts.STATIC_URL)
 									button.side-button.submit-button
 										span.fa.fa-floppy-o
 

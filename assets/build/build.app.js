@@ -951,11 +951,12 @@
 			if (!el) return _possibleConstructorReturn(_this);
 
 			_this.el = el;
+			_this.module = new _MenuModule__model2.default();
 			_this.menuId = _this.el.getAttribute('data-menu-id');
 			_this.addItemForm = '.side-modal-wrapper__form';
 			_this.itemBindObjects = null;
 
-			_MenuModule__model2.default.requestData(_this.createMenuTree.bind(_this), _this.menuId);
+			_this.module.requestData(_this.createMenuTree.bind(_this), _this.menuId);
 
 			return _this;
 		}
@@ -979,9 +980,10 @@
 
 				for (var i = 0; i < elements.length; i++) {
 					if (elements[i].type == 'text') {
-						_MenuModule__model2.default.langArray[elements[i].name][uniq] = elements[i].value;
+						this.module.langArray[elements[i].name][uniq] = elements[i].value;
 					}
-					if (elements[i].tagName == 'SELECT') {
+
+					if (elements[i].tagName == 'SELECT' || elements[i].type == 'url' && elements[i].value != '') {
 						temporary['link'] = elements[i].value;
 						temporary['label'] = uniq;
 					}
@@ -992,9 +994,9 @@
 					temporary['label'] = uniq;
 				}
 
-				this.pushToArray(temporary, pushLabel, _MenuModule__model2.default.menuObject);
+				this.pushToArray(temporary, pushLabel, this.module.menuObject);
 
-				var temp = _Templates2.default[pushTemplate](_MenuModule__model2.default.langArray[_MenuModule__model2.default.lang][uniq], uniq);
+				var temp = _Templates2.default[pushTemplate](this.module.langArray[this.module.lang][uniq], uniq);
 
 				element.parentNode.insertAdjacentHTML('beforeend', temp);
 
@@ -1014,19 +1016,20 @@
 
 						if (obj[key].label == pushLabel) {
 							obj[key].items.push(temporary);
-							return;
 						} else if (obj[key].label != pushLabel && obj[key].items) {
 							generator(obj[key].items);
-							return;
 						}
 					}
 				})(obj.items);
+
+				console.log(this.module);
 			}
 		}, {
 			key: 'createMenuTree',
 			value: function createMenuTree() {
 
-				var tmp = _Templates2.default.itemMenuGeneral(_MenuModule__model2.default.menuObject.label, _MenuModule__model2.default.menuObject._id);
+				var tmp = _Templates2.default.itemMenuGeneral(this.module.menuObject.label, this.module.menuObject._id),
+				    self = this;
 
 				(function generator(obj) {
 
@@ -1035,15 +1038,15 @@
 					for (var i = 0; i < obj.length; i++) {
 
 						if (obj[i].items) {
-							tmp += _Templates2.default.itemSubMenu(_MenuModule__model2.default.langArray[_MenuModule__model2.default.lang][obj[i].label], obj[i].label);
+							tmp += _Templates2.default.itemSubMenu(self.module.langArray[self.module.lang][obj[i].label], obj[i].label);
 							generator(obj[i].items);
 							tmp += "</div>";
-							return;
+							continue;
 						}
 
-						tmp += _Templates2.default.itemMenu(_MenuModule__model2.default.langArray[_MenuModule__model2.default.lang][obj[i].label], obj[i].label);
+						tmp += _Templates2.default.itemMenu(self.module.langArray[self.module.lang][obj[i].label], obj[i].label);
 					}
-				})(_MenuModule__model2.default.menuObject.items);
+				})(this.module.menuObject.items);
 
 				this.el.insertAdjacentHTML('afterbegin', tmp);
 
@@ -1053,7 +1056,7 @@
 					type: 'submit'
 				});
 
-				this.flyEvent('add', ['click'], [document.querySelectorAll('.side-save-tree'), document.querySelector('.side-menu-form-wrapper__event-remove')], [_MenuModule__model2.default.setMenuData.bind(_MenuModule__model2.default), _MenuModule__model2.default.removeMenuData.bind(_MenuModule__model2.default)]);
+				this.flyEvent('add', ['click'], [document.querySelectorAll('.side-save-tree'), document.querySelector('.side-menu-form-wrapper__event-remove')], [this.module.setMenuData.bind(this.module), this.module.removeMenuData.bind(this.module)]);
 			}
 		}]);
 
@@ -1311,7 +1314,7 @@
 		return MenuModel;
 	}(_helper2.default);
 
-	exports.default = new MenuModel();
+	exports.default = MenuModel;
 
 /***/ },
 /* 18 */,

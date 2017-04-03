@@ -28,6 +28,8 @@
 	"EMPTY": "Empty",
 	"ADD_SUBMENU": "Add submenu",
 	"ADD_ITEMS": "Add item",
+	"URL_ADD_ANOTHER" : "Or add static url",
+	"STATIC_URL" : "Static url",
 	"ERROR": {
 		"NAME_ARE_BUSY" : "This name are busy",
 		"NOT_DELETED" : "Please call to developer, and say him this id",
@@ -65,6 +67,10 @@
 		"contacts": "Contacts",
 		"sign": "Sign in",
 		"reg": "Registration",
-		"START_TRADING": "Start trading"
+		"START_TRADING": "Start trading",
+		"rights": "All rights reserved",
+		"phone": "Phone:",
+		"fax": "Fax:",
+		"email": "Email:"
 	}
 }
