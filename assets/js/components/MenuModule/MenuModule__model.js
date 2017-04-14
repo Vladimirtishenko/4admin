@@ -53,23 +53,19 @@ class MenuModel extends Helper {
 					self.RemoveTranslationItems.call(self, obj[i].label);
 					generator(obj[i].items);
 					obj.splice(i, 1);
-					break;
 
 				} else if(obj[i].label == label){
 					self.RemoveTranslationItems.call(self, obj[i].label);
 					obj.splice(i, 1);
-					break;
 
 				} else if(removed && obj[i].items) {
 					self.RemoveTranslationItems.call(self, obj[i].label)
 					generator(obj[i].items);
-					break;
 
 				} else if(removed){
 					self.RemoveTranslationItems.call(self, obj[i].label);
 				} else if(obj[i].items){
 					generator(obj[i].items);
-					break;
 				}
 
 			}

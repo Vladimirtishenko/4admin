@@ -60,10 +60,6 @@ class MenuModule extends Helper {
 
 	}
 	pushToArray(temporary, pushLabel, obj){
-		
-
-
-
 		if(obj._id && obj._id == pushLabel){
 			obj.items.push(temporary);
 			return;
