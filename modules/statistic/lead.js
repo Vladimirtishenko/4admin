@@ -6,7 +6,8 @@ Lead.prototype.saveLead = function(params, callback){
 
 	model.findOneAndUpdate({username: params.user_email}, {
 		username: params.user_email,
-		partner: params && params.partner && params.partner.code || '' 
+		partner: params && params.partner && params.partner.code || '',
+		options: params.option
 	},{
 		upsert: true,
 		new: true

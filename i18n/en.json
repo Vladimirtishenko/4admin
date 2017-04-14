@@ -88,6 +88,7 @@
 		"partner_code": "Partner code",
 		"show_news": "Show news for: ",
 		"day": "Day",
-		"week": "Week"
+		"week": "Week",
+		"registration": "Registration user in DAX100 system"
 	}
 }
