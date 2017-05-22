@@ -21,7 +21,7 @@ module.exports.post = function(req, res, next){
 			req.session.user = {_id: id, role: role, username: username}
 			res.json({
 				status: 302,
-				redirect: '/4admin/'
+				redirect: '/4admin'
 			})
 		}
 	})

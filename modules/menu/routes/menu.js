@@ -6,5 +6,5 @@ module.exports = function(app){
 	
 	app.get("/4admin/menu/edit/:id", authorize, require("./menu_edit.js").get)
 	app.get("/4admin/menu/get/:id", authorize, require("./menu_get.js").get)
-	app.post("/4admin/menu/set/", authorize, require("./menu_set.js").post)
+	app.post("/4admin/menu/set", authorize, require("./menu_set.js").post)
 }

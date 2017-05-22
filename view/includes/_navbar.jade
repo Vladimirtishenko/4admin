@@ -9,7 +9,7 @@
 						each val, index in data.language_keys
 							- var key = index.toUpperCase();
 							- if (index != lang)
-								a.side-lang-menu__item(href="/4admin/?clang="+index)=key
+								a.side-lang-menu__item(href="?clang="+index)=key
 							- else 
 								span.side-lang-menu__item.side-lang-active=key
 					a(href="/4admin/logout")
