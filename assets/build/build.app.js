@@ -1242,7 +1242,7 @@
 		}, {
 			key: 'setMenuData',
 			value: function setMenuData() {
-				this.xhrRequest('POST', '/4admin/menu/set/', 'application/json', JSON.stringify({ menu: this.menuObject, translate: this.langArray }), this.responseBeforeRecalculate.bind(this));
+				this.xhrRequest('POST', '/4admin/menu/set', 'application/json', JSON.stringify({ menu: this.menuObject, translate: this.langArray }), this.responseBeforeRecalculate.bind(this));
 			}
 		}, {
 			key: 'removeMenuData',
