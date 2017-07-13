@@ -1,0 +1,6 @@
+
+// Import 
+
+System.import('').then(module => {
+	console.log(module);
+})

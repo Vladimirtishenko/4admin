@@ -1,78 +1,55 @@
-"use strict";
-
+const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin('build.min.css');
-const poststylus = require('poststylus');
-const rucksack = require('rucksack-css');
-const stylusLoader = ExtractTextPlugin.extract("style-loader", "css-loader?minimize!stylus-loader");
-const NODE_ENV = process.env.NODE_ENV || "development";
+const extractTextPlugin = require('extract-text-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
-let config = [{
-    name: 'js',
-    entry: {
-        app: './assets/js/app.js',
-    },
-    output: {
-        path: "./assets/build/",
-        filename: 'build.[name].js',
-        publicPath: '/4admin/assets/build/'
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.js?$/,
-                exclude: /(node_modules)/,
-                loader: "babel",
-                query: {
-                    presets: ['es2015']
-                }
-            }
-        ]
-    },
-    resolve: {
-        modulesDirectories: ["node_modules"],
-        extensions: ["", ".js", "css", "styl", "woff", "ttf", "otf", "jpg"]
-    }
-}, {
-    name: 'styles',
-    entry: {
-        build: "./assets/styl/builder.styl",
-    },
-    exclude: '/node_modules/',
-    output: {
-        path: './assets/build/',
-        filename: '[name].min.css'
-    },
-    watch: true,
-    module: {
-       loaders: [
-        {
-            test: /\.styl$/,
-            loader: stylusLoader
-        },
-        {
-            test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg|otf)$/, 
-            loader: 'url-loader?limit=100000'
-        }
-        ]
-    },
-    resolve: {
-        modulesDirectories: ["node_modules"],
-        extensions: ["", ".js", ".css", ".styl"]
-    },
-    stylus: {
-      use: [
-        poststylus(rucksack({
-          autoprefixer: true
-        }))
-      ]
-    },
-    plugins: [
-        new ExtractTextPlugin("[name].min.css")
-    ]
-}];
+const VENDOR_LIBS = [
+	'faker',
+	'lodash',
+	'react',
+	'react-redux',
+	'react-dom',
+	'redux',
+	'react-input-range',
+	'redux-form',
+	'redux-thunk'
+];
 
+const config = {
+	entry: {
+		app: './fe/app.js',
+		vendor: VENDOR_LIBS
+	},
+	output: {
+		path: path.resolve(__dirname, 'fe/build'),
+		filename: '[name].[chunkhash].js'
+	},
+	module: {
+		rules: [
+			{
+				use: 'babel-loader',
+				test: /\.js$/,
+				exclude: /node_modules/
+			}, 
+			{
+				use: ['style-loader', 'css-loader'],
+				test: /\.css$/
+			}
+		]
+	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			names: ['vendor', 'manifest']
+		}),
+		new htmlWebpackPlugin({
+			template: 'fe/index.html'
+		}),
+		/*new webpack.optimize.UglifyJsPlugin({
+		    compress: {
+		        warnings: false
+		    }
+		})*/
+	]
+}
 
 module.exports = config;
