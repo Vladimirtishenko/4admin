@@ -17,11 +17,11 @@ const VENDOR_LIBS = [
 
 const config = {
 	entry: {
-		app: './fe/app.js',
+		app: './assets/js/app.js',
 		vendor: VENDOR_LIBS
 	},
 	output: {
-		path: path.resolve(__dirname, 'fe/build'),
+		path: path.resolve(__dirname, 'assets/build'),
 		filename: '[name].[chunkhash].js'
 	},
 	module: {
@@ -42,7 +42,7 @@ const config = {
 			names: ['vendor', 'manifest']
 		}),
 		new htmlWebpackPlugin({
-			template: 'fe/index.html'
+			template: 'assets/index.html'
 		}),
 		/*new webpack.optimize.UglifyJsPlugin({
 		    compress: {
