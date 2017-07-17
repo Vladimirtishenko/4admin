@@ -89,6 +89,16 @@
 		"show_news": "Show news for: ",
 		"day": "Day",
 		"week": "Week",
-		"registration": "Registration user in DAX100 system"
+		"registration": "Registration user in DAX100 system",
+		"server_error": "Temporary server problems, sorry. Later, we are already doing technical work to correct this problem!",
+		"user_already_exist": "This operation was not successful, perhaps such a user has already been registered in the system, try changing the phone number or email. Error text: ",
+		"activation_fail": "Activation failed. Please try again later. We apologize for the inconvenience.",
+		"validation_fail": "Check the correctness of the fields!",
+		"welcome": "Welcome",
+		"account_already_created": "Your account was created successfully!",
+		"email_send": "By e-mail",
+		"privat_area": "sent data for the entrance to enter your personal area:",
+		"privat": "Personal Area",
+		"smtp_error": "The registration message could not be delivered after a number of attempts. The message can be delivered in the future."
 	}
 }
