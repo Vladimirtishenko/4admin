@@ -1,4 +1,4 @@
-var authorize = require('../../../middleware/authotize.js');
+ var authorize = require('../../../middleware/authotize.js');
 module.exports = function(app) {
 	app.get('/4admin/carousel', authorize, require('./carousel_all').get)
 	app.post('/4admin/carousel/add', authorize, require('./carousel_add').post)

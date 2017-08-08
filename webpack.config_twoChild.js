@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const ExtraneousFileCleanupPlugin = require('webpack-extraneous-file-cleanup-plugin');
 
 const VENDOR_LIBS = [
 	'faker',
@@ -12,36 +11,56 @@ const VENDOR_LIBS = [
 	'react-redux',
 	'react-dom',
 	'redux',
-	'react-router-dom',
 	'react-input-range',
 	'redux-form',
 	'redux-thunk'
 ];
 
-const config = {
+const config = [{
+	name: 'js',
 	entry: {
 		app: './assets/js/app.js',
-		vendor: VENDOR_LIBS,
+		vendor: VENDOR_LIBS
 	},
 	output: {
 		path: path.resolve(__dirname, 'assets/build'),
-		filename: '[name].[chunkhash].js',
-		publicPath: ''
+		filename: '[name].[chunkhash].js'
 	},
-	stats: {
-    	colors: true
-  	},
 	module: {
 		rules: [
 			{
 				use: 'babel-loader',
 				test: /\.jsx?$/,
 				exclude: /node_modules/
-			}, 
-			{
-				use: ['style-loader', 'css-loader'],
-				test: /\.css$/
-			},
+			}
+		]
+	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			names: ['vendor', 'manifest']
+		}),
+		new htmlWebpackPlugin({
+			filename: 'index.html',
+			inject: true,
+		}),
+		/*new webpack.optimize.UglifyJsPlugin({
+		    compress: {
+		        warnings: false
+		    }
+		})*/
+	]
+},
+{
+	name: 'stylus',
+	entry: {
+		static: './assets/styl/core/core.styl',
+	},
+	output: {
+		path: path.resolve(__dirname, 'assets/build'),
+		filename: '[name].[chunkhash].min.css'
+	},
+	module: {
+		rules: [
 			{
                test: /\.styl$/, 
                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', 
@@ -66,23 +85,12 @@ const config = {
 		]
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor', 'manifest'],
-		}),
 		new ExtractTextPlugin("[name].[chunkhash].min.css"),
-		/*new ExtraneousFileCleanupPlugin({
-		  minBytes: 1024
-		}),*/
 		new htmlWebpackPlugin({
-			template: 'assets/index.html'
+			filename: 'index.html',
+			inject: true,
 		}),
-
-		/*new webpack.optimize.UglifyJsPlugin({
-		    compress: {
-		        warnings: false
-		    }
-		})*/
 	]
-}
+}]
 
 module.exports = config;
