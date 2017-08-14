@@ -1,28 +1,72 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import Icon from 'react-fontawesome'
+var FontAwesome = require('react-fontawesome');
 
 class Header extends React.Component {
 	
 	render () {
 		return (
-		   <header className="container-fluid">
-			  <div className="row">
-			    <div className="side-header col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			      <div className="side-flex-area">
-			      		<i aria-hidden="true" className="fa fa-bars fa-white side-open-menu"></i>
-			      		<img src="http://4side.xyz/images/logo.png" alt="" className="side-header__logo"/>
-			        <div className="side-header__left">
-			        	<span className="side-lang-menu">
-			        		<a href="?clang=" className="side-lang-menu__item">{this.props.val}</a>
-			        	</span>
-			        	<a href="/4admin/logout">
-			        		<i aria-hidden="true" className="fa fa-sign-out fa-white"></i>
-			        	</a>
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-			</header>
+			<nav className="navbar navbar-transparent navbar-absolute">
+				<FontAwesome
+			        className='super-crazy-colors'
+			        name='rocket'
+			        size='2x'
+			        spin
+			        style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+			      />
+				<div className="container-fluid">
+					<div className="navbar-header">
+						<button type="button" className="navbar-toggle" data-toggle="collapse">
+							<span className="sr-only">Toggle navigation</span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+						</button>
+						<a className="navbar-brand" href="#">Material Dashboard</a>
+					</div>
+					<div className="collapse navbar-collapse">
+						<ul className="nav navbar-nav navbar-right">
+							<li>
+								<a href="#pablo" className="dropdown-toggle" data-toggle="dropdown">
+									<i className="material-icons">dashboard</i>
+									<p className="hidden-lg hidden-md">Dashboard</p>
+								</a>
+							</li>
+							<li className="dropdown">
+								<a href="#" className="dropdown-toggle" data-toggle="dropdown">
+									<i className="material-icons">notifications</i>
+									<span className="notification">5</span>
+									<p className="hidden-lg hidden-md">Notifications</p>
+								</a>
+								<ul className="dropdown-menu">
+									<li><a href="#">Mike John responded to your email</a></li>
+									<li><a href="#">You have 5 new tasks</a></li>
+									<li><a href="#">You're now friend with Andrew</a></li>
+									<li><a href="#">Another Notification</a></li>
+									<li><a href="#">Another One</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#pablo" className="dropdown-toggle" data-toggle="dropdown">
+	 							   <i className="material-icons">person</i>
+	 							   <p className="hidden-lg hidden-md">Profile</p>
+		 						</a>
+							</li>
+						</ul>
+
+						<form className="navbar-form navbar-right" role="search">
+							<div className="form-group  is-empty">
+								<input type="text" className="form-control" placeholder="Search"/>
+								<span className="material-input"></span>
+							</div>
+							<button type="submit" className="btn btn-white btn-round btn-just-icon">
+								<i className="material-icons">search</i><div className="ripple-container"></div>
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
 		);
 	}	
 

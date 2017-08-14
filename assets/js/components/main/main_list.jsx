@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import Layout from '../layout/layout.jsx';
+import Table from '../widget/tables-grid.jsx';
 
 class Main extends React.Component {
 	
@@ -8,7 +9,7 @@ class Main extends React.Component {
 		return (
 			<div>
 			   <Layout />
-			   <p>Main View</p>
+			   <Table />
 			</div>
 		);
 	}

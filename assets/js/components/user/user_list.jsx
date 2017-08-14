@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import Layout from '../layout/layout.jsx';
+import UserForm from './user_form.jsx';
 
 class UserView extends React.Component {
 	
@@ -8,7 +9,7 @@ class UserView extends React.Component {
 		return (
 			<div>
 			   <Layout />
-			   <p>User View</p>
+			   <UserForm />
 			</div>
 		);
 	}
