@@ -86,6 +86,7 @@
 		"pass": "Password",
 		"static_pass": "Static password",
 		"partner_code": "Partner code",
+		"source_id": "Source name",
 		"show_news": "Show news for: ",
 		"day": "Day",
 		"week": "Week",
