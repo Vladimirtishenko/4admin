@@ -5,7 +5,7 @@ class Table extends React.Component {
 	
 	render () {
 		return (
-		   <span>Tables grid222</span>
+		   <span></span>
 		);
 	}	
 

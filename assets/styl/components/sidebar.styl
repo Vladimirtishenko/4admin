@@ -1,0 +1,137 @@
+.dax-sidebar
+    position: fixed
+    height: 100%
+    background-color: #f1f4f6
+    width: 260px
+    top: 0
+    left: 0
+    z-index: 2
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)
+
+.dax-sidebar__logo
+    position: relative
+    height: 70px
+    padding: 15px
+
+.dax-sidebar__logo:after
+    content: ''
+    position: absolute
+    bottom: 0
+    right: 10%
+    width: 80%
+    height: 1px
+    background-color: rgba(180, 180, 180, 0.3)
+
+.dax-sidebar__link
+    text-align: center
+    display: block
+    font-size: 18px
+    color: #3C4858
+    line-height: 40px
+    letter-spacing: 0
+
+.dax-sidebar__desktop-search-form
+    width: 215px
+    height: 50px
+    margin: 50px auto 0
+
+.dax-sidebar__search-input
+    float: left
+    width: calc(100% - 44px)
+    display: block
+    font-size: 14px
+    line-height: 1.43
+    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2)
+    background-size: 0 2px, 100% 1px
+    background-repeat: no-repeat
+    background-position: center bottom, center calc(100% - 1px)
+    transition: background 0s ease-out
+
+.dax-sidebar__search-input:focus
+    background-size: 100% 2px, 100% 1px
+    outline: none
+    transition-duration: .3s
+
+.dax-sidebar__search-input::-webkit-input-placeholder
+    color: #555;
+
+.dax-sidebar__search-input::-moz-placeholder
+    color: #555;
+
+.dax-sidebar__search-input:-ms-input-placeholder
+    color: #555;
+
+.dax-sidebar__search-input:-moz-placeholder
+    color: #555;
+
+
+.dax-sidebar__search-btn
+    border-radius: 50%
+    background-color: #fff
+    width: 44px
+    height: 44px
+    padding: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    box-shadow: 0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12)
+    float: right
+    margin: -16px -3px 0 0;
+    cursor: pointer
+
+
+.dax-sidebar__search-btn i
+    font-size: 17px
+    width: 20px
+    color: #999
+
+.dax-sidebar__wrapper-list
+    margin-top: 30px
+
+.dax-sidebar__wrapper-link.active
+    background-color: #9c27b0
+    color: #fff
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)
+
+.dax-sidebar__wrapper-link i
+    color: #a9afbb
+
+.dax-sidebar__wrapper-link.active i
+    color: #fff
+
+.dax-sidebar__wrapper-link
+    display: block
+    padding: 10px 15px
+    margin: 10px 15px
+    border-radius: 3px
+    color: #3C4858
+    transition: all 300ms
+
+.dax-sidebar__wrapper-link:hover
+    background-color: #eee
+    color: #3C4858
+
+.dax-sidebar__wrapper-link.active:hover
+    background-color: #8923b0
+    color: #fff
+
+
+.dax-sidebar__wrapper-icon
+    float: left
+    margin-right: 15px
+    line-height: 30px
+    letter-spacing: normal
+    width: 30px
+    text-align: center
+
+.dax-sidebar__wrapper-par
+    font-family: RobotoLight, sans-serif
+    font-weight: 300
+    line-height: 30px
+    font-size: 14px
+    letter-spacing: 0
+
+
+@media (max-width: 992px)/*sm & xs*/
+    .dax-sidebar
+        z-index: 1

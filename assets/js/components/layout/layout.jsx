@@ -8,7 +8,9 @@ class Layout extends React.Component {
 	render () {
 		return (
 			<div>
-			   <Header />
+				<div className="dax-content">
+					<Header />
+				</div>
 			   <Sidebar />
 			</div>
 		);
