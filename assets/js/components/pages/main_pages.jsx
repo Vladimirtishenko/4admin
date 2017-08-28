@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import UserForm from './user_form.jsx';
 import Header from '../includes/header.jsx';
 import Sidebar from '../includes/sidebar.jsx';
+import Table from '../widget/tables-grid.jsx';
 
-class UserView extends React.Component {
+class Pages extends React.Component {
+
+
 
     render () {
         return (
@@ -12,7 +13,7 @@ class UserView extends React.Component {
                 <Sidebar />
                 <div className="site-content">
                     <Header />
-                    <UserForm />
+                    Pages
                 </div>
             </div>
         );
@@ -21,5 +22,4 @@ class UserView extends React.Component {
 
 }
 
-
-export default UserView;
+export default Pages;

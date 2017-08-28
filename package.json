@@ -20,6 +20,7 @@
     "express": "^4.15.3",
     "faker": "^4.1.0",
     "lodash": "^4.17.4",
+    "md5": "^2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-input-range": "^1.1.4",

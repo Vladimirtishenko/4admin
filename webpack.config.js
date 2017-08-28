@@ -15,7 +15,8 @@ const VENDOR_LIBS = [
 	'react-router-dom',
 	'react-input-range',
 	'redux-form',
-	'redux-thunk'
+	'redux-thunk',
+	'md5'
 ];
 
 const config = {

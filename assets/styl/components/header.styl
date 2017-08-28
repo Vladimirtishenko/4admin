@@ -1,16 +1,15 @@
 .head-wrapper
-    margin-left: 260px
     height: 70px
     padding: 10px 0
 
-.dax-header
+.site-header
     display: inline-block
 
-.dax-head__mobile-toggle
+.site-head__mobile-toggle
     padding: 10px 15px
     height: 70px
 
-.dax-head__mobile-toggle-icon-bar
+.site-head__mobile-toggle-icon-bar
     display: block
     position: relative
     width: 24px
@@ -20,7 +19,7 @@
     background-color: #555555;
     border: 1px solid #555555;
 
-.dax-head__logo
+.site-head__logo
     font-family: RobotoLight, sans-serif
     font-weight: 400
     font-size: 18px
@@ -30,7 +29,7 @@
     padding: 10px 15px
 
 
-.dax-header__desktop
+.site-header__desktop
     float: right
     display: flex
     justify-content: space-between
@@ -38,69 +37,21 @@
     flex-wrap: nowrap
     padding: 10px 15px
 
-.dax-header__desktop-search-form
+.site-header__desktop-search-container
     width: 240px
+    margin-bottom: -19px;
+    margin-right: 6px;
 
-.dax-desktop-header__search-input
-    float: left
-    width: calc(100% - 44px)
-    display: block
-    font-size: 14px
-    line-height: 1.43
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2)
-    background-size: 0 2px, 100% 1px
-    background-repeat: no-repeat
-    background-position: center bottom, center calc(100% - 1px)
-    transition: background 0s ease-out
-
-.dax-desktop-header__search-input:focus
-    background-size: 100% 2px, 100% 1px
-    outline: none
-    transition-duration: .3s
-
-.dax-desktop-header__search-input::-webkit-input-placeholder
-    color: #555;
-
-.dax-desktop-header__search-input::-moz-placeholder
-    color: #555;
-
-.dax-desktop-header__search-input:-ms-input-placeholder
-    color: #555;
-
-.dax-desktop-header__search-input:-moz-placeholder
-    color: #555;
-
-
-.dax-desktop-header__search-btn
-    border-radius: 50%
-    background-color: #fff
-    width: 44px
-    height: 44px
-    padding: 0
-    display: flex
-    justify-content: center
-    align-items: center
-    box-shadow: 0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12)
-    float: right
-    margin-top: -7px
-    cursor: pointer
-
-.dax-desktop-header__search-btn i
-    font-size: 17px
-    width: 20px
-    color: #999
-
-
-.dax-header__menu
+.site-header__menu
     display: flex
     justify-content: space-between
     align-items: center
     width: 100px
 
-.dax-header__menu-link
+.site-header__menu-link
     padding: 15px
 
-.dax-header__menu-link i
+.site-header__menu-link i
     color: #555
     font-size: 20px
 
@@ -113,11 +64,11 @@
     .head-wrapper
         margin-left: 0
 
-    .dax-header__desktop
+    .site-header__desktop
         display: none
 
-    .dax-header
+    .site-header
         width: 100%
     
-    .dax-head__logo
+    .site-head__logo
         float: right

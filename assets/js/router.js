@@ -7,6 +7,7 @@ import {
 
 import Main from './components/main/main_list.jsx'
 import User from './components/user/user_list.jsx'
+import Pages from './components/pages/main_pages.jsx'
 
 class Routers extends React.Component {
 	render () {
@@ -14,7 +15,8 @@ class Routers extends React.Component {
 		  <Router history={browserHistory}>
 		    <div>
 		        <Route exact={true} path="/" component={Main} />
-		        <Route path="/users" component={User} />
+				<Route path="/users" component={User} />
+				<Route path="/pages" component={Pages} />
 		    </div>
 		  </Router>
 		);

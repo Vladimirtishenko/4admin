@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
+import Search from '../widget/search/main__search.jsx';
 
 class Header extends React.Component {
 
     sandwichMenu(event){
-        var daxContent = document.querySelector(".dax-content");
-        (daxContent.classList.contains("dax-sidebar-open")) ? daxContent.classList.remove("dax-sidebar-open") :
-            daxContent.className += " dax-sidebar-open";
-
-
+        var siteContent = document.querySelector(".site-content");
+        (siteContent.classList.contains("site-sidebar-open")) ? siteContent.classList.remove("site-sidebar-open") :
+            siteContent.className += " site-sidebar-open";
     }
 
     render () {
@@ -17,33 +16,29 @@ class Header extends React.Component {
         return (
             <div className="head-wrapper">
                 <div className="container-fluid">
-                    <div className="dax-header">
+                    <div className="site-header">
                         <button onClick={this.sandwichMenu} type="button"
-                                className="dax-head__mobile-toggle hidden-md hidden-lg">
-                            <span className="dax-head__mobile-toggle-icon-bar"></span>
-                            <span className="dax-head__mobile-toggle-icon-bar"></span>
-                            <span className="dax-head__mobile-toggle-icon-bar"></span>
+                                className="site-head__mobile-toggle hidden-md hidden-lg">
+                            <span className="site-head__mobile-toggle-icon-bar"></span>
+                            <span className="site-head__mobile-toggle-icon-bar"></span>
+                            <span className="site-head__mobile-toggle-icon-bar"></span>
 
                         </button>
-                        <a className="dax-head__logo" href="#">Material Dashboard</a>
+                        <a className="site-head__logo" href="#">Material Dashboard</a>
                     </div>
-                    <div className="dax-header__desktop">
-                        <form className="dax-header__desktop-search-form" role="search">
-                            <input type="text" className="dax-desktop-header__search-input active"
-                                       placeholder="Search"/>
-                            <button type="submit" className="dax-desktop-header__search-btn">
-                                <i className="material-icons">search</i>
-                            </button>
-                        </form>
-                        <ul className="dax-header__menu">
+                    <div className="site-header__desktop">
+                        <div className="site-header__desktop-search-container hidden-sm hidden-xs">
+                            <Search/>
+                        </div>
+                        <ul className="site-header__menu">
                             <li>
-                                <Link to="/" className="dax-header__menu-link">
+                                <Link to="/" className="site-header__menu-link">
                                     <i className="material-icons">dashboard</i>
                                     <p className="hidden-lg hidden-md">Dashboard</p>
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className="dax-header__menu-link">
+                                <Link to="/" className="site-header__menu-link">
                                     <i className="material-icons">person</i>
                                     <p className="hidden-lg hidden-md">Profile</p>
                                 </Link>
