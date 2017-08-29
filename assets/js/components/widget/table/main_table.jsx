@@ -33,6 +33,9 @@ class Table extends React.Component {
                                     <td className="site-users-table__wrapper-table-head-data">
                                         Role
                                     </td>
+                                    <td className="site-users-table__wrapper-table-head-data">
+                                        Edit
+                                    </td>
                                 </tr>
                                 </thead>
                                 <Cell/>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 
@@ -57,6 +58,14 @@ class Cell extends React.Component {
                     </td>
                     <td className="site-users-table__wrapper-table-data">
                         {item.role}
+                    </td>
+                    <td className="site-users-table__wrapper-table-data site-users-table__wrapper-table-edit-data">
+                        <Link to="#" className="site-users-table__wrapper-table-edit-data-link">
+                            <i className="material-icons">edit</i>
+                        </Link>
+                        <Link to="#" className="site-users-table__wrapper-table-edit-data-link">
+                            <i className="material-icons">delete_forever</i>
+                        </Link>
                     </td>
                 </tr>
             )
