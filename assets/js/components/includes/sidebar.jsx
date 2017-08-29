@@ -35,8 +35,14 @@ class SideBar extends React.Component {
                         </li>
                         <li>
                             <Link to="/pages" className="site-sidebar__wrapper-link">
-                                <i className="site-sidebar__wrapper-icon material-icons">person</i>
+                                <i className="site-sidebar__wrapper-icon material-icons">content_copy</i>
                                 <p className="site-sidebar__wrapper-par">Pages</p>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/table" className="site-sidebar__wrapper-link">
+                                <i className="site-sidebar__wrapper-icon material-icons">people</i>
+                                <p className="site-sidebar__wrapper-par">Table</p>
                             </Link>
                         </li>
                     </ul>

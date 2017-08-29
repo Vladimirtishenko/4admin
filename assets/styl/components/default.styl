@@ -22,7 +22,6 @@ body
     font-family: RobotoRegular, sans-serif
     font-weight: 400
     background-color: bodyBackground
-    margin-bottom: 500px
 
 main
     overflow: hidden
@@ -48,6 +47,7 @@ main
 
 .site-content
     min-height: 100vh
+    height: 100%
     opacity: .99
     z-index: 2
     background-color: bodyBackground
@@ -89,6 +89,9 @@ main
     .hidden-sm
         display: none
 
+    .site-content
+        padding-left: 0
+
     .site-row-md-revers
         display: flex
         flex-direction: column-reverse
@@ -97,6 +100,9 @@ main
 @media (max-width: 768px)/*xs*/
     .hidden-xs
         display: none
+
+    .site-content
+        padding-left: 0
 
     .site-row-md-revers
         display: flex

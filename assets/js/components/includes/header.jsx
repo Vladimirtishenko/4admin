@@ -22,7 +22,6 @@ class Header extends React.Component {
                             <span className="site-head__mobile-toggle-icon-bar"></span>
                             <span className="site-head__mobile-toggle-icon-bar"></span>
                             <span className="site-head__mobile-toggle-icon-bar"></span>
-
                         </button>
                         <a className="site-head__logo" href="#">Material Dashboard</a>
                     </div>

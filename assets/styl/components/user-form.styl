@@ -1,5 +1,6 @@
 .site-user-form
-    padding-top: 80px
+    margin-top: 54px
+    padding: 0 30px
 
 .site-user-form__form-wrapper
     background-color: #ffffff
@@ -82,7 +83,7 @@
     transition all 0.2s
     border-radius: 3px
 
-.site-user-form__btn-wrapper-button:hover
+.site-user-form__btn-wrapper-button:hover, .site-user-form__btn-wrapper-button:hover:focus
     background-color: #285b8e
     box-shadow: 0 14px 26px -12px rgba(48, 121, 193, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(48, 121, 193, 0.2)
 
@@ -95,8 +96,9 @@
 .site-user-form__card-wrapper
     position: relative
     height: 150px
+    width: 130px
     overflow: hidden
-    margin-top: -70px
+    margin: -70px auto 0
 
 
 .site-user-form__card-avatar
@@ -110,7 +112,11 @@
 .site-user-form__card-icon
     position: absolute
     bottom: 13px
-    left: 60%
+    right: -5px
+
+.site-user-form__card-label
+    width: 130px!important
+    margin: 0 auto
 
 #site-user-form__card-input
     display: none

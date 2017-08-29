@@ -29,23 +29,20 @@ class UserForm extends React.Component {
                                     <p className="site-user-form__title-description">Complete your profile</p>
                                 </div>
                                 <div className="row margin-t-5">
-                                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div className="site-user-form-input-wrapper">
                                             <label className="site-inputs-label">Fist Name</label>
                                             <input onFocus={this.lableUp} onBlur={this.labelDown}
                                                    className="site-bouncing-input site-underline-input" type="text"/>
                                         </div>
                                     </div>
-                                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div className="site-user-form-input-wrapper">
                                             <label className="site-inputs-label">Last Name</label>
                                             <input onFocus={this.lableUp} onBlur={this.labelDown}
                                                    className="site-bouncing-input site-underline-input" type="text"/>
                                         </div>
                                     </div>
-                                    <div className="clear"></div>
-                                </div>
-                                <div className="row">
                                     <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div className="site-user-form-input-wrapper">
                                             <label className="site-inputs-label">E-mail</label>
@@ -53,6 +50,9 @@ class UserForm extends React.Component {
                                                    className="site-bouncing-input site-underline-input" type="text"/>
                                         </div>
                                     </div>
+                                    <div className="clear"></div>
+                                </div>
+                                <div className="row">
                                     <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div className="site-user-form-input-wrapper">
                                             <label className="site-inputs-label">Position</label>
@@ -63,6 +63,13 @@ class UserForm extends React.Component {
                                     <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div className="site-user-form-input-wrapper">
                                             <label className="site-inputs-label">Role</label>
+                                            <input onFocus={this.lableUp} onBlur={this.labelDown}
+                                                   className="site-bouncing-input site-underline-input" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                        <div className="site-user-form-input-wrapper">
+                                            <label className="site-inputs-label">Superpower</label>
                                             <input onFocus={this.lableUp} onBlur={this.labelDown}
                                                    className="site-bouncing-input site-underline-input" type="text"/>
                                         </div>
@@ -83,8 +90,7 @@ class UserForm extends React.Component {
                                              alt="profile avatar" className="site-user-form__card-avatar"/>
                                         <i className="material-icons site-user-form__card-icon">file_upload</i>
                                     </label>
-                                    <input type="file"
-                                           id="site-user-form__card-input"/>
+                                    <input type="file" id="site-user-form__card-input"/>
                                     <div className="clear"></div>
                                 </div>
                                 <h4 className="site-user-form__card-mail">some-mail@gmail.com</h4>
