@@ -6,14 +6,14 @@ class UserForm extends React.Component {
 
     lableUp(event){
         var label =  event.target.previousElementSibling;
-        if(!label.classList.contains("site-inputs-label-to-top")) {
-            label.className += " site-inputs-label-to-top";
+        if(!label.classList.contains("site-inputs-label_to-top")) {
+            label.className += " site-inputs-label_to-top";
         }
     }
     labelDown(event){
         var input = event.target;
         if(input.value == ""){
-            input.previousElementSibling.classList.remove("site-inputs-label-to-top");
+            input.previousElementSibling.classList.remove("site-inputs-label_to-top");
         }
     }
 

@@ -1,0 +1,64 @@
+.site-notification
+    position: fixed
+    top: 20px
+    left: 0
+    right: 0
+    margin: 0 auto
+    width: 650px
+    background-color: #f55a4e
+    color: #ffffff
+    z-index: 50
+    border-radius: 3px
+    padding: 20px 26px 11px 65px
+
+.site-notification__question-icon
+    position: absolute
+    left: 15px
+    top: 50%
+    font-size: 26px
+    color: #fff
+    transform: translate(0, -50%)
+
+.site-notification__close
+    position: absolute
+    right: 10px
+    top: 10px
+    font-size: 14px
+    font-weight: 400
+    color: #ffffff
+    cursor: pointer
+
+.site-notification__close:hover
+    font-weight: 700
+
+.site-notification_txt
+    font-family: RobotoLight, sans-serif
+    font-size: 14px
+    font-weight: 300
+    color: #fff
+
+.site-notification__btn-container
+    text-align: right
+
+.site-notification__btn-container-btn
+    font-family: RobotoLight, sans-serif
+    font-size: 14px
+    font-weight: 300
+    color: #fff
+    cursor: pointer
+    padding-bottom: 7px
+    border-radius: 3px
+    margin-top: 5px
+
+.site-notification__btn-container-icon
+    font-weight: 400
+    font-size: 20px
+    transform: translateY(4px)
+
+.site-notification__btn-container-btn:hover
+    background-color: rgba(255, 255, 255, 0.2)
+
+
+@media (max-width: 767px)
+    .site-notification
+        width: 85%

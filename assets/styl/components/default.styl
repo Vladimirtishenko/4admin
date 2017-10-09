@@ -67,9 +67,57 @@ main
     outline: none
     transition-duration: .3s
 
+.site-textarea-label
+.site-inputs-label
+    font-family: "RobotoLight", "Helvetica", "Arial", sans-serif
+    font-weight: 400
+    font-size: 14px
+    color: #aaa
+    letter-spacing: 0
+    position: absolute
+    bottom: 21px
+    max-width: 100%
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    transition: all ease 0.3s
+    z-index: 2
+
+.site-textarea-label
+    bottom: 99px
+
+.site-inputs-label.site-inputs-label_to-top
+    font-size: 11px
+    bottom: 47px
+
+.site-textarea-label.site-inputs-label_to-top
+    font-size: 11px
+    bottom: 125px
+
+.site-bouncing-input
+.site-bouncing-textarea
+    font-family: RobotoLight, Helvetica, Arial, sans-serif
+    font-size: 14px
+    font-weight: 400
+    color: #555555
+    padding: 10px 0
+    margin: 36px 0 10px
+    position: relative
+    z-index: 3
+    background-color: transparent
+
+.site-bouncing-textarea
+    border: 0
+    height: 111px
+
 .site-sidebar-open
     transform: translate(260px, 0);
 
+.site-table-responsive-wrapper
+    width: 100%
+    max-width: 100%
+    overflow-x: auto
+    overflow-y: visible;
 
 @media (min-width: 1200px)/*lg*/
     .hidden-lg

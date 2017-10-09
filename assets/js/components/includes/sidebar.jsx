@@ -45,6 +45,12 @@ class SideBar extends React.Component {
                                 <p className="site-sidebar__wrapper-par">Table</p>
                             </Link>
                         </li>
+                        <li>
+                            <Link to="/carousel" className="site-sidebar__wrapper-link">
+                                <i className="site-sidebar__wrapper-icon material-icons">view_carousel</i>
+                                <p className="site-sidebar__wrapper-par">Carousel</p>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
