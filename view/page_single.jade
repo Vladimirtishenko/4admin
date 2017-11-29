@@ -43,6 +43,8 @@ block content
 	script(src="/4admin/assets/js/lib/ckeditor/ckeditor.js")
 	script.
 		CKEDITOR.config.width = '80%';
+		CKEDITOR.config.allowedContent = true;
+		CKEDITOR.config.extraAllowedContent = '*(*)';
 		CKEDITOR.config.filebrowserBrowseUrl = '/4admin/uploader';
 		CKEDITOR.config.filebrowserUploadUrl = '/4admin/uploader';
 		CKEDITOR.replaceAll();

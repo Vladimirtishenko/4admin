@@ -63,6 +63,8 @@
 	},
 	"SITE" : {
 		"calendar" : "Economic calendar",
+		"type" : "Types of accounts in DAX100 Company",
+		"type_short" : "Types of accounts",
 		"bluechips": "Blue chips",
 		"contacts": "Contacts",
 		"sign": "Sign in",
