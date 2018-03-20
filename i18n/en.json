@@ -62,6 +62,8 @@
 		"MENU_RECALCULATE_UPDATE": "Menu recalculated successfully!"
 	},
 	"SITE" : {
+		"main_lang" : "Basic languages:",
+		"other_lang" : "All available languages:",
 		"calendar" : "Economic calendar",
 		"type" : "Types of accounts in DAX100 Company",
 		"type_short" : "Types of accounts",
